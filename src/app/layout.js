@@ -1,7 +1,6 @@
-import { Inter } from "next/font/google";
+import { fonts } from "./fonts";
 import "./globals.css";
-import RootLayout from "@/components/RootLayout";
-const inter = Inter({ subsets: ["latin"] });
+import { Providers } from "./provider";
 
 export const metadata = {
   title: "BR@IN",
@@ -9,9 +8,9 @@ export const metadata = {
 
 export default function Layout({ children }) {
   return (
-    <html lang="en">
-      <body className={[inter.className]}>
-        <RootLayout>{children}</RootLayout>
+    <html lang="en" className={fonts.poppins.variable}>
+      <body>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

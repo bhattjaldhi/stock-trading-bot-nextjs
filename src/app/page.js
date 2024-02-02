@@ -1,60 +1,287 @@
-import { Box, Grid, Typography } from "@mui/material";
+// pages/index.js
+'use client'
+import RootLayout from "@/components/RootLayout";
+import { Box, Button, Grid, GridItem, Heading, Text } from "@chakra-ui/react";
 import Image from "next/image";
-import CustomButton from "@/components/CustomButton"
 
-export default function Home() {
+const Home = () => {
   return (
-    <Box display="flex" alignItems={"center"} flexDirection={"column"}>
-      <Box position={"relative"} marginTop={20} height={"500px"}>
-        <Image
-          src="/assets/images/home_pattern.svg"
-          height={124}
-          width={145}
-          style={{ position: "absolute", top: 0 }}
-        />
-        <Image
-          src="/assets/images/home_title_graph.svg"
-          height={124}
-          width={145}
-          style={{ position: "absolute", bottom: 0, left: 50 }}
-        />
-        <Image
-          src="/assets/images/home_title_coin.svg"
-          height={124}
-          width={145}
-          style={{ position: "absolute", right: -80, top: -80 }}
-        />
-        <Image
-          src="/assets/images/home_title_person.svg"
-          height={124}
-          width={145}
-          style={{ position: "absolute", right: 100, bottom: -20 }}
-        />
-        <Box display="flex" justifyContent={"center"} alignItems={"center"} paddingTop={20} >
-          <Box width={"70%"} display="flex" justifyContent={"center"} alignItems={"center"} flexDirection={"column"}>
-            <Typography variant={"h3"} color="secondary" textAlign="center">Build Wealth Automatically <br/> With Br@in</Typography>
-            <Typography color="#c5c5c5" textAlign="center" marginTop={2}>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut dolor sit</Typography>
-            <CustomButton variant="text" backgroundColor="#F3F3F3" textColor="#000000" borderRadius={20} style={{ padding: "10px 20px", marginTop: 40 }}>Get Started</CustomButton>
+    <RootLayout>
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        minHeight="100vh"
+      >
+        <Box mt={[100, 150, 200]} mx="auto" width={["90%", "90%", "900px"]} position="relative" px={[4, 8, 12]}>
+          <Box textAlign="center">
+            <Heading as="h2" size="3xl" mb={4}>
+              Build Wealth Automatically With Br@in
+            </Heading>
+            <Text fontSize="lg" color="gray.600">
+              Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut dolor sit
+            </Text>
           </Box>
         </Box>
+        <Button
+          mt={6}
+          borderRadius="20px"
+          colorScheme={"primary"}
+          px={[2, 4, 6]} // Responsive padding
+          py={[2, 3, 4]}
+        >
+          Get Started
+        </Button>
+        <Box position="relative" width="100%" height={['200px', '400px', '900px']} mt={8} px={[4, 8, 12]}>
+          <Image src="/assets/images/home_banner.png" layout="responsive" objectFit="cover" width={1500} height={500} alt="banner" />
+        </Box>
+        <Box position="relative" width="80%" height={['70px', '200px', '200px']} mt={8} display="flex" justifyContent="center" px={[4, 8, 12]}>
+          <Image src="/assets/images/home_counter.png" layout="responsive" objectFit="cover" width={500} height={500} style={{ maxWidth: '1100px' }} alt="counter" />
+        </Box>
+        <Box position="relative" width="100%" mt={150} px={['30px', '50px', '200px']} >
+          <Heading as="h2" size="xl" textAlign="center">
+            Invest & Grow your cryptocurrency Portfolio
+          </Heading>
+          <Grid
+            templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']}
+            gap={8}
+            mt={8}
+            px={[4, 8, 12]}
+          >
+            <GridItem colSpan={1}>
+              <Box
+                width="100%"
+                background="#F3F3F3"
+                display={"flex"}
+                flexDirection={"column"}
+                padding={['50px', '100px', '50px']}
+                borderRadius={20}
+              >
+                <Heading as="h5" size={"md"}>
+                  More than a typical crypto wallet
+                </Heading>
+                <Text fontSize="sm" color="gray.600">
+                  Lorem ipsum dolor sit amet consect eturadipiscing eiusmod
+                </Text>
+                <Text fontSize="sm" color="primary.500" mt={3}>
+                  Read More
+                </Text>
+                <Box display={'flex'} justifyContent={'center'}>
+                  <Image src="/assets/images/home_portfolio_1.png" height={300} width={300} style={{ marginTop: 30 }} alt="portfolio_1" />
+                </Box>
+              </Box>
 
+            </GridItem>
+            <GridItem colSpan={1}>
+              <Box
+                width="100%"
+                background="#F3F3F3"
+                display={"flex"}
+                flexDirection={"column"}
+                padding={['50px', '100px', '50px']}
+                borderRadius={20}
+              >
+                <Box display={'flex'} justifyContent={'center'}>
+                  <Image src="/assets/images/home_portfolio_2.png" height={300} width={300} style={{ marginBottom: 30 }} alt="portfolio_2" />
+                </Box>
+                <Heading as="h5" size={"md"}>
+                  Grow your business with Binance Pay
+                </Heading>
+                <Text fontSize="sm" color="gray.600">
+                  Lorem ipsum dolor sit amet consectetur adipiscing eiusmod
+                </Text>
+                <Text fontSize="sm" color="primary.500" mt={3}>
+                  Read More
+                </Text>
+              </Box>
+
+            </GridItem>
+            <GridItem colSpan={1}>
+              <Box
+                width="100%"
+                background="#F3F3F3"
+                display={"flex"}
+                flexDirection={"column"}
+                padding={['50px', '100px', '50px']}
+                borderRadius={20}
+              >
+                <Heading as="h5" size={"md"}>
+                  A crypto wallet from the future
+                </Heading>
+                <Text fontSize="sm" color="gray.600">
+                  Lorem ipsum dolor sit amet consect eturadipiscing eiusmod
+                </Text>
+                <Text fontSize="sm" color="primary.500" mt={3}>
+                  Read More
+                </Text>
+                <Box display={'flex'} justifyContent={'center'}>
+                  <Image src="/assets/images/home_portfolio_3.png" height={300} width={300} style={{ marginTop: 30 }} alt="portfolio_3" />
+                </Box>
+              </Box>
+
+            </GridItem>
+          </Grid>
+          {/* Additional content goes here */}
+
+        </Box>
+
+        <Box position="relative" width="100%" mt={150} px={['30px', '50px', '200px']} >
+          <Heading as="h2" size="xl" textAlign="center">
+            Fully featured to buy, trade and invest in Cryptop
+          </Heading>
+          <Grid
+            templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']}
+            gap={8}
+            mt={8}
+          >
+            <GridItem colSpan={1}>
+              <Box
+                width="100%"
+                background="#F3F3F3"
+                display={"flex"}
+                flexDirection={"column"}
+                padding={['50px', '100px', '50px']}
+                borderRadius={20}
+              >
+                <Box>
+                  <Image src="/assets/icons/home_features_1.svg" height={61} width={61} style={{ marginTop: 30 }} alt="feature_1" />
+                </Box>
+                <Heading as="h5" size={"md"} mt={5}>
+                  Real-time trading
+                </Heading>
+                <Text fontSize="sm" color="gray.600" mt={5}>
+                  Organically grow the holistic world view of disruptive innovati workplace diversity  empowerment.
+                </Text>
+
+              </Box>
+            </GridItem>
+            <GridItem colSpan={1}>
+              <Box
+                width="100%"
+                background="#F3F3F3"
+                display={"flex"}
+                flexDirection={"column"}
+                padding={['50px', '100px', '50px']}
+                borderRadius={20}
+              >
+                <Box>
+                  <Image src="/assets/icons/home_features_2.svg" height={61} width={61} style={{ marginTop: 30 }} alt="feature_2" />
+                </Box>
+                <Heading as="h5" size={"md"} mt={5}>
+                  Easy to create wallet
+                </Heading>
+                <Text fontSize="sm" color="gray.600" mt={5}>
+                  Organically grow the holistic world view of disruptive innovati workplace diversity  empowerment.
+                </Text>
+
+              </Box>
+            </GridItem>
+            <GridItem colSpan={1}>
+              <Box
+                width="100%"
+                background="#F3F3F3"
+                display={"flex"}
+                flexDirection={"column"}
+                padding={['50px', '100px', '50px']}
+                borderRadius={20}
+              >
+                <Box>
+                  <Image src="/assets/icons/home_features_3.svg" height={61} width={61} style={{ marginTop: 30 }} alt="feature_3" />
+                </Box>
+                <Heading as="h5" size={"md"} mt={5}>
+                  Safe & secure
+                </Heading>
+                <Text fontSize="sm" color="gray.600" mt={5}>
+                  Organically grow the holistic world view of disruptive innovati workplace diversity  empowerment.
+                </Text>
+
+              </Box>
+            </GridItem>
+            <GridItem colSpan={1}>
+              <Box
+                width="100%"
+                background="#F3F3F3"
+                display={"flex"}
+                flexDirection={"column"}
+                padding={['50px', '100px', '50px']}
+                borderRadius={20}
+              >
+                <Box>
+                  <Image src="/assets/icons/home_features_4.svg" height={61} width={61} style={{ marginTop: 30 }} alt="feature_4" />
+                </Box>
+                <Heading as="h5" size={"md"} mt={5}>
+                  Super Fast KYC
+                </Heading>
+                <Text fontSize="sm" color="gray.600" mt={5}>
+                  Organically grow the holistic world view of disruptive innovati workplace diversity  empowerment.
+                </Text>
+
+              </Box>
+            </GridItem>
+            <GridItem colSpan={1}>
+              <Box
+                width="100%"
+                background="#F3F3F3"
+                display={"flex"}
+                flexDirection={"column"}
+                padding={['50px', '100px', '50px']}
+                borderRadius={20}
+              >
+                <Box>
+                  <Image src="/assets/icons/home_features_5.svg" height={61} width={61} style={{ marginTop: 30 }} alt="feature_5" />
+                </Box>
+                <Heading as="h5" size={"md"} mt={5}>
+                  Send & receive anytime
+                </Heading>
+                <Text fontSize="sm" color="gray.600" mt={5}>
+                  Organically grow the holistic world view of disruptive innovati workplace diversity  empowerment.
+                </Text>
+
+              </Box>
+            </GridItem>
+            <GridItem colSpan={1}>
+              <Box
+                width="100%"
+                background="#F3F3F3"
+                display={"flex"}
+                flexDirection={"column"}
+                padding={['50px', '100px', '50px']}
+                borderRadius={20}
+              >
+                <Box>
+                  <Image src="/assets/icons/home_features_6.svg" height={61} width={61} style={{ marginTop: 30 }} alt="feature_6" />
+                </Box>
+                <Heading as="h5" size={"md"} mt={5}>
+                  Reports & analytics
+                </Heading>
+                <Text fontSize="sm" color="gray.600" mt={5}>
+                  Organically grow the holistic world view of disruptive innovati workplace diversity  empowerment.
+                </Text>
+              </Box>
+            </GridItem>
+          </Grid>
+          <Box display={'flex'} mt={6}>
+            <Button
+
+              borderRadius="20px"
+              colorScheme={"primary"}
+              bgGradient={'linear(to-r, primary.500, primary.600)'}
+              px={[2, 4, 6]}
+              py={[2, 3, 4]}
+            >
+              Get Started
+            </Button>
+            <Button borderRadius="20px"
+              ml={5}
+              px={[2, 4, 6]}
+              py={[2, 3, 4]}>
+              View More
+            </Button>
+          </Box>
+        </Box>
       </Box>
-      <Image src={"/assets/images/home_banner.png"} layout="responsive" height={945} width={1300} style={{ marginTop: 50 }} />
-      <Image src={"/assets/images/home_counter.png"}  height={600} width={800} style={{ marginTop: 50 }} />
-
-      <Grid container sx={{ backgroundColor: '#EAEEF1', display: 'flex', justifyContent: 'center', width: '100%', mt: 5 }}>
-        <Grid item xs={6} sx={{ display: 'flex', alignItems: 'flex-start', flexDirection: 'column', p: 5 }}>
-          <Typography sx={{ color: '#000000', fontSize: 30, fontWeight: 'bold' }}>
-            Explore endless possibilities with Cryptop
-          </Typography>
-          <Typography sx={{ color: '#797979', fontSize: 14 }}>
-            Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut dolor sit
-          </Typography>
-        </Grid>
-        <Grid item xs={6} sx={{ p: 15 }}>
-          <Image src="/assets/images/home_crypto_24_7.png" height={620} width={760} layout="responsive" />
-        </Grid>
-      </Grid>
-    </Box>
+    </RootLayout>
   );
-}
+};
+
+export default Home;

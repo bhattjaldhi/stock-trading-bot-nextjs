@@ -1,4 +1,4 @@
-@import "@fontsource/poppins";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,7 +21,6 @@ body {
   color: rgb(var(--foreground-rgb));
   background: white;
   height: 100vh;
-  font-family: 'Poppins', sans-serif !important;
 }
 
 @layer utilities {
