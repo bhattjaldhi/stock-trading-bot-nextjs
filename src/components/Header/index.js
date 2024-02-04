@@ -31,6 +31,7 @@ const Header = () => {
           <Flex display={{ base: "none", md: "flex" }} align="center">
             <Link mr={4}>Home</Link>
             <Link mr={4}>About</Link>
+            <Link mr={4}>Pricing</Link>
             <Link mr={4}>Contact</Link>
             <Link mr={4}>Privacy</Link>
             <Link mr={4}>Terms</Link>
@@ -66,6 +67,9 @@ const Header = () => {
                 </Link>
                 <Link mb={2} onClick={onClose}>
                   About
+                </Link>
+                <Link mb={2} onClick={onClose}>
+                  Pricing
                 </Link>
                 <Link mb={2} onClick={onClose}>
                   Contact

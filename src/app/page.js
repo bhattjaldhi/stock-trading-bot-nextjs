@@ -15,10 +15,10 @@ const Home = () => {
       >
         <Box mt={[100, 150, 200]} mx="auto" width={["90%", "90%", "900px"]} position="relative" px={[4, 8, 12]}>
           <Box textAlign="center">
-            <Heading as="h2" size="3xl" mb={4}>
+            <Heading as="h2"  size={{base: 'xl', md: '2xl', lg: "3xl"}} mb={4}>
               Build Wealth Automatically With Br@in
             </Heading>
-            <Text fontSize="lg" color="gray.600">
+            <Text fontSize={{base: 'sm', md: 'md', lg: "lg"}} color="gray.600">
               Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut dolor sit
             </Text>
           </Box>

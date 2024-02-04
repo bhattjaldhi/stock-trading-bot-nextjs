@@ -1,0 +1,42 @@
+[debug] [2024-02-04T07:52:34.187Z] ----------------------------------------------------------------------
+[debug] [2024-02-04T07:52:34.190Z] Command:       /opt/homebrew/Cellar/node/21.6.1/bin/node /opt/homebrew/bin/firebase init hosting
+[debug] [2024-02-04T07:52:34.190Z] CLI Version:   13.1.0
+[debug] [2024-02-04T07:52:34.190Z] Platform:      darwin
+[debug] [2024-02-04T07:52:34.190Z] Node Version:  v21.6.1
+[debug] [2024-02-04T07:52:34.190Z] Time:          Sun Feb 04 2024 02:52:34 GMT-0500 (Eastern Standard Time)
+[debug] [2024-02-04T07:52:34.191Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-02-04T07:52:34.242Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-02-04T07:52:34.242Z] > authorizing via signed-in user (bhattjaldhi27@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/jaldhibhatt/Desktop/Study/Loyalist/Project/stock-trading-bot-nextjs
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-02-04T07:52:34.244Z] Using project from CLI flag: aip-trading-bot
+[debug] [2024-02-04T07:52:34.246Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/aip-trading-bot [none]
+[debug] [2024-02-04T07:52:34.536Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/aip-trading-bot 200
+[debug] [2024-02-04T07:52:34.537Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/aip-trading-bot {"projectId":"aip-trading-bot","projectNumber":"528734869338","displayName":"AIP-trading-bot","name":"projects/aip-trading-bot","resources":{"hostingSite":"aip-trading-bot"},"state":"ACTIVE","etag":"1_b257faa7-6274-412c-ae0b-3549c4653850"}
+[info] i  Using project aip-trading-bot (AIP-trading-bot) 
+[info] 
+=== Hosting Setup
+[debug] [2024-02-04T07:52:34.544Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/aip-trading-bot [none]
+[debug] [2024-02-04T07:52:34.910Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/aip-trading-bot 200
+[debug] [2024-02-04T07:52:34.911Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/aip-trading-bot {"projectId":"aip-trading-bot","projectNumber":"528734869338","displayName":"AIP-trading-bot","name":"projects/aip-trading-bot","resources":{"hostingSite":"aip-trading-bot"},"state":"ACTIVE","etag":"1_b257faa7-6274-412c-ae0b-3549c4653850"}
