@@ -1,5 +1,5 @@
 'use client'
-import RootLayout from "@/components/RootLayout";
+import RootLayout from "@/layouts/RootLayout";
 import signUp from "@/firebase/services/auth/signup";
 import { Box, Button, FormControl, FormErrorMessage, FormLabel, Heading, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
 import Link from "next/link";
@@ -16,7 +16,6 @@ export default function Page() {
   } = useForm()
 
   function onSubmit(values) {
-    console.log(values)
     return new Promise((resolve) => {
       signUp(values.email, values.password).then(response => {
         if (!response.error) {

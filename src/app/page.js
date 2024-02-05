@@ -1,6 +1,6 @@
 // pages/index.js
 'use client'
-import RootLayout from "@/components/RootLayout";
+import RootLayout from "@/layouts/RootLayout";
 import { Box, Button, Grid, GridItem, Heading, Text } from "@chakra-ui/react";
 import Image from "next/image";
 

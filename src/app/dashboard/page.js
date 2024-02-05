@@ -1,10 +1,12 @@
 'use client'
-import RootLayout from "@/components/RootLayout";
-import { Button, Text } from "@chakra-ui/react";
+// pages/dashboard.js
+import DashboardLayout from "@/layouts/DashboardLayout";
+import { Text } from "@chakra-ui/react";
 
 export default function Page() {
-    return <RootLayout>
-        <Text>Welcome to dashboard</Text>
-        <Button>Logout</Button>
-    </RootLayout>
+  return (
+    <DashboardLayout>
+      <Text>Welcome to the dashboard</Text>
+    </DashboardLayout>
+  );
 }

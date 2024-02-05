@@ -1,5 +1,5 @@
 'use client'
-import RootLayout from "@/components/RootLayout";
+import RootLayout from "@/layouts/RootLayout";
 import { Box, Button, Divider, Grid, GridItem, Heading, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +10,7 @@ export default function Page() {
         <Box display="flex" alignItems="center" flexDirection={'column'} width="100%" minHeight="100vh">
             <Box mt={[50, 70, 100]} mx="auto" width={'90%'} px={[4, 8, 12]} display={"flex"} alignItems={"center"}>
                 <Box display={['none', 'block', 'block']} width={200} height={200} position="relative">
-                    <Image src={'/assets/icons/pricing_icon_1.svg'} layout="fill" objectFit="cover" />
+                    <Image src={'/assets/icons/pricing_icon_1.svg'} layout="fill" objectFit="cover" alt="pricing_icon_1" />
                 </Box>
                 <Box textAlign="center" flex="1" ml={[0, 0, 4]}>
                     <Heading as="h2" size={{ base: 'xl', md: '2xl', lg: "3xl" }} mb={4}>
@@ -21,7 +21,7 @@ export default function Page() {
                     </Text>
                 </Box>
                 <Box display={['none', 'block', 'block']} width={234} height={234} position="relative">
-                    <Image src={'/assets/icons/pricing_icon_2.svg'} layout="fill" objectFit="cover" />
+                    <Image src={'/assets/icons/pricing_icon_2.svg'} layout="fill" objectFit="cover" alt="pricing_icon_2" />
                 </Box>
             </Box>
             <Grid templateColumns={['1fr', '1fr', 'repeat(4, 1fr)']} gap={2} width="70%" justifySelf="center" my={[20, 20, 40]}>
