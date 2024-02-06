@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback } from 'react';
 
-export function Links(props) {
+function Links(props) {
   const { routes } = props;
 
   //   Chakra color mode
