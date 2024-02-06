@@ -1,9 +1,9 @@
 import Alpaca from '@alpacahq/alpaca-trade-api';
 const alpaca = new Alpaca({
-  keyId: process.env.NEXT_PUBLIC_ALPACA_API_KEY,
-  secretKey: process.env.NEXT_PUBLIC_ALPACA_API_SECRET,
-  paper: true, // set to false for live trading
-  usePolygon: false // set to true if you want to use Polygon data
+  keyId: "CKKH0I1K1FDZ7FIQKMDU",
+  secretKey: "c5FGB00h5k6Xq6rzTiQxiD1Grlh2M3lhkgwaE2fR",
+  paper: true, // set to false for live trading,
+  baseUrl: 'https://broker-api.sandbox.alpaca.markets'
 });
 
 export default alpaca;

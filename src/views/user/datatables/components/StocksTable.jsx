@@ -1,12 +1,13 @@
-import { Flex, Box, Table, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue, Button } from '@chakra-ui/react';
+import { Flex, Box, Table, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue, Button, Tfoot } from '@chakra-ui/react';
 import * as React from 'react';
 
 import {
 	createColumnHelper,
 	flexRender,
 	getCoreRowModel,
+	getPaginationRowModel,
 	getSortedRowModel,
-	useReactTable
+	useReactTable,
 } from '@tanstack/react-table';
 
 // Custom components
@@ -17,73 +18,39 @@ const columnHelper = createColumnHelper();
 // const columns = columnsDataCheck;
 export default function StocksTable(props) {
 	const { tableData } = props;
-	const [ sorting, setSorting ] = React.useState([]);
+	const [sorting, setSorting] = React.useState([]);
 	const textColor = useColorModeValue('secondaryGray.900', 'white');
 	const borderColor = useColorModeValue('gray.200', 'whiteAlpha.100');
-	let defaultData= tableData;
+	let defaultData = tableData;
 	const columns = [
-		columnHelper.accessor('stock', {
-			id: 'stock',
+		columnHelper.accessor('symbol', {
+			id: 'symbol',
 			header: () => (
 				<Text
 					justifyContent='space-between'
 					align='center'
 					fontSize={{ sm: '10px', lg: '12px' }}
 					color='gray.400'>
-					Stock
+					Symbol
 				</Text>
 			),
 			cell: (info) => (
-				<Flex align='center'> 
+				<Flex align='center'>
 					<Text color={textColor} fontSize='sm' fontWeight='700'>
 						{info.getValue()}
 					</Text>
 				</Flex>
 			)
 		}),
-		columnHelper.accessor('invested_value', {
-			id: 'invested_value',
+		columnHelper.accessor('exchange', {
+			id: 'exchange',
 			header: () => (
 				<Text
 					justifyContent='space-between'
 					align='center'
 					fontSize={{ sm: '10px', lg: '12px' }}
 					color='gray.400'>
-					Invested amount
-				</Text>
-			),
-			cell: (info) => (
-				<Text color={textColor} fontSize='sm' fontWeight='700'>
-					{info.getValue()}
-				</Text>
-			)
-		}),
-		columnHelper.accessor('current_value', {
-			id: 'current_value',
-			header: () => (
-				<Text
-					justifyContent='space-between'
-					align='center'
-					fontSize={{ sm: '10px', lg: '12px' }}
-					color='gray.400'>
-					Current value
-				</Text>
-			),
-			cell: (info) => (
-				<Text color={textColor} fontSize='sm' fontWeight='700'>
-					{info.getValue()}
-				</Text>
-			)
-		}),
-		columnHelper.accessor('date', {
-			id: 'date',
-			header: () => (
-				<Text
-					justifyContent='space-between'
-					align='center'
-					fontSize={{ sm: '10px', lg: '12px' }}
-					color='gray.400'>
-					DATE
+					Exchange
 				</Text>
 			),
 			cell: (info) => (
@@ -106,23 +73,29 @@ export default function StocksTable(props) {
 			),
 			cell: (info) => (
 				<Button colorScheme={'brand'} size={'sm'} fontWeight='700'>
-					Edit
+					View
 				</Button>
 			)
 		})
 	];
-	const [ data, setData ] = React.useState(() => [ ...defaultData ]);
+	const [data, setData] = React.useState(() => [...defaultData]);
 	const table = useReactTable({
 		data,
 		columns,
 		state: {
-			sorting
+			state: {
+				sorting,
+				pageIndex: 0,
+				pageSize: 10,
+			},
 		},
 		onSortingChange: setSorting,
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
-		debugTable: true
+		getPaginationRowModel: getPaginationRowModel(),
+		debugTable: true,
 	});
+
 	return (
 		<Card flexDirection='column' w='100%' px='0px' overflowX={{ sm: 'scroll', lg: 'hidden' }}>
 			<Flex px='25px' mb="8px" justifyContent='space-between' align='center'>
@@ -135,7 +108,7 @@ export default function StocksTable(props) {
 				<Table variant='simple' color='gray.500' mb='24px' mt="12px">
 					<Thead>
 						{table.getHeaderGroups().map((headerGroup) => (
-							<Tr  key={headerGroup.id}>
+							<Tr key={headerGroup.id}>
 								{headerGroup.headers.map((header) => {
 									return (
 										<Th
@@ -162,7 +135,7 @@ export default function StocksTable(props) {
 						))}
 					</Thead>
 					<Tbody>
-						{table.getRowModel().rows.slice(0, 11).map((row) => {
+						{table.getRowModel().rows.map((row) => {
 							return (
 								<Tr key={row.id}>
 									{row.getVisibleCells().map((cell) => {
@@ -180,6 +153,54 @@ export default function StocksTable(props) {
 							);
 						})}
 					</Tbody>
+					<Tfoot>
+  <Tr>
+    <Td colSpan={columns.length} textAlign="center">
+      <Button onClick={() => table.previousPage()} disabled={!table.canPreviousPage}>
+        Previous
+      </Button>{' '}
+      <Button onClick={() => table.nextPage()} disabled={!table.canNextPage}>
+        Next
+      </Button>{' '}
+      <Text as="span">
+        Page{' '}
+        <strong>
+          {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+        </strong>{' '}
+      </Text>
+      <Text as="span">
+        | Go to page:{' '}
+        <input
+          type="number"
+          defaultValue={table.getState().pagination.pageIndex + 1}
+          onChange={(e) => {
+            const page = e.target.value ? Number(e.target.value) - 1 : 0;
+            table.setPageIndex(page);
+          }}
+          style={{ width: '50px' }}
+        />
+      </Text>{' '}
+      <Text as="span">
+        Show{' '}
+        <select
+          value={table.pageSize}
+          onChange={(e) => {
+            table.setPageSize(Number(e.target.value));
+          }}
+        >
+          {[10, 20, 30, 40, 50].map((pageSize) => (
+            <option key={pageSize} value={pageSize}>
+              {pageSize}
+            </option>
+          ))}
+        </select>{' '}
+        entries
+      </Text>
+    </Td>
+  </Tr>
+</Tfoot>
+
+
 				</Table>
 			</Box>
 		</Card>
