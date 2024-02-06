@@ -20,4 +20,4 @@ function Content(props) {
 	);
 }
 
-export default SidebarContent;
+export default Content;
