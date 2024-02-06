@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback } from 'react';
 
-export function SidebarLinks(props) {
+export function Links(props) {
   const { routes } = props;
 
   //   Chakra color mode
@@ -120,4 +120,4 @@ export function SidebarLinks(props) {
   return <>{createLinks(routes)}</>;
 }
 
-export default SidebarLinks;
+export default Links;

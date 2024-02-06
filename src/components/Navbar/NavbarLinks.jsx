@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 // Custom Components
 import { Image } from '@/components/image/Image';
-import { SearchBar } from '@/components/navbar/searchBar';
+import SearchBar from '@/components/Navbar/SearchBar';
 import { SidebarResponsive } from '@/components/Sidebar';
 // Assets
 import navImage from '/public/img/layout/Navbar.png';

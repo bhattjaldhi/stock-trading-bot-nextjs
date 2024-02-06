@@ -4,7 +4,7 @@ import { Box, Flex, Stack } from '@chakra-ui/react';
 import Brand from '@/components/sidebar/components/Brand';
 import Links from '@/components/sidebar/components/Links';
 
-function SidebarContent(props) {
+function Content(props) {
 	const { routes } = props;
 
 	// SIDEBAR

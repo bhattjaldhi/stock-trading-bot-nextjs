@@ -5,7 +5,7 @@ import { Flex, useColorModeValue } from '@chakra-ui/react';
 import { HorizonLogo } from '@/components/Icons';
 import { HSeparator } from '@/components/Separator';
 
-export function SidebarBrand() {
+export default function Brand() {
 	//   Chakra color mode
 	let logoColor = useColorModeValue('navy.700', 'white');
 
@@ -17,4 +17,4 @@ export function SidebarBrand() {
 	);
 }
 
-export default SidebarBrand;
+
