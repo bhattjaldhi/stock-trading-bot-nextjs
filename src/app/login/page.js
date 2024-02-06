@@ -77,11 +77,11 @@ export default function Page() {
             </FormControl>
 
             <Box>
-              <Text color={"primary.500"} fontSize={'sm'} mt={7}>
+              <Text color={"brand.500"} fontSize={'sm'} mt={7}>
                 <Link href="/forgot-password">Forgot Password?</Link>
               </Text>
             </Box>
-            <Button type="submit" colorScheme={"primary"} mt={7} borderRadius={10} width={"100%"} isLoading={isSubmitting}>
+            <Button type="submit" colorScheme={"brand"} mt={7} borderRadius={10} width={"100%"} isLoading={isSubmitting}>
               Sign in
             </Button>
             <Box display={"flex"} mt={7} alignItems={"center"}>
@@ -89,7 +89,7 @@ export default function Page() {
                 New User ?
               </Text>
               <Link href="/register">
-                <Text color={"primary.500"} ml={2}>
+                <Text color={"brand.500"} ml={2}>
                   Create a new account.
                 </Text>
               </Link>

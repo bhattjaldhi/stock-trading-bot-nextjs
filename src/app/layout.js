@@ -1,6 +1,6 @@
 import { fonts } from "./fonts";
-import "./globals.css";
-import { Providers } from "./provider";
+import "@/styles/App.css";
+import { Providers } from "./providers";
 
 export const metadata = {
   title: "BR@IN",
@@ -10,7 +10,7 @@ export default function Layout({ children }) {
   return (
     <html lang="en" className={fonts.poppins.variable}>
       <body>
-        <Providers>{children}</Providers>
+          <Providers>{children}</Providers>
       </body>
     </html>
   );

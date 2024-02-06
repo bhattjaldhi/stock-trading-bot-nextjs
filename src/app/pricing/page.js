@@ -30,7 +30,7 @@ export default function Page() {
                         Free
                     </Heading>
                     <Box p={6} px={"30px"}>
-                        <Text fontSize={["xl", "2xl", "3xl"]} fontWeight="bold" mt={2} color={"primary.500"}>
+                        <Text fontSize={["xl", "2xl", "3xl"]} fontWeight="bold" mt={2} color={"brand.500"}>
                             $ 0
                         </Text>
                         <Text>Per month</Text>
@@ -66,7 +66,7 @@ export default function Page() {
                         Pro
                     </Heading>
                     <Box p={6} px={"40px"}>
-                        <Text fontSize={["xl", "2xl", "3xl"]} fontWeight="bold" mt={2} color={"primary.500"}>
+                        <Text fontSize={["xl", "2xl", "3xl"]} fontWeight="bold" mt={2} color={"brand.500"}>
                             $ 9.99
                         </Text>
                         <Text>Per month</Text>
@@ -103,7 +103,7 @@ export default function Page() {
                         Max
                     </Heading>
                     <Box p={6} px={"30px"}>
-                        <Text fontSize={["xl", "2xl", "3xl"]} fontWeight="bold" mt={2} color={"primary.500"}>
+                        <Text fontSize={["xl", "2xl", "3xl"]} fontWeight="bold" mt={2} color={"brand.500"}>
                             $ 19.99
                         </Text>
                         <Text>Per month</Text>
@@ -140,7 +140,7 @@ export default function Page() {
                         Ultra
                     </Heading>
                     <Box p={6} px={"30px"}>
-                        <Text fontSize={["xl", "2xl", "3xl"]} fontWeight="bold" mt={2} color={"primary.500"}>
+                        <Text fontSize={["xl", "2xl", "3xl"]} fontWeight="bold" mt={2} color={"brand.500"}>
                             $ 29.99
                         </Text>
                         <Text>Per month</Text>

@@ -72,7 +72,7 @@ export default function Page() {
               </FormErrorMessage>
             </FormControl>
             <Link href="/forgot-password">
-              <Text color={"primary.500"} fontSize={'sm'} mt={7}>Forgot Password?</Text>
+              <Text color={"brand.500"} fontSize={'sm'} mt={7}>Forgot Password?</Text>
             </Link>
             <Button colorScheme={"primary"} mt={7} borderRadius={10} width={"100%"} type='submit' isLoading={isSubmitting}>Sign up</Button>
             <Box display={"flex"} mt={7} alignItems={"center"}>
@@ -80,7 +80,7 @@ export default function Page() {
                 Already have an account ?
               </Text>
               <Link href="/login">
-                <Text color={"primary.500"} ml={2}>
+                <Text color={"brand.500"} ml={2}>
                   Sign in.
                 </Text>
               </Link>

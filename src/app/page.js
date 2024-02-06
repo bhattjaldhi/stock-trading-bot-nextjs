@@ -26,7 +26,7 @@ const Home = () => {
         <Button
           mt={6}
           borderRadius="20px"
-          colorScheme={"primary"}
+          colorScheme={"brand"}
           px={[2, 4, 6]} // Responsive padding
           py={[2, 3, 4]}
         >
@@ -63,7 +63,7 @@ const Home = () => {
                 <Text fontSize="sm" color="gray.600">
                   Lorem ipsum dolor sit amet consect eturadipiscing eiusmod
                 </Text>
-                <Text fontSize="sm" color="primary.500" mt={3}>
+                <Text fontSize="sm" color="brand.500" mt={3}>
                   Read More
                 </Text>
                 <Box display={'flex'} justifyContent={'center'}>
@@ -90,7 +90,7 @@ const Home = () => {
                 <Text fontSize="sm" color="gray.600">
                   Lorem ipsum dolor sit amet consectetur adipiscing eiusmod
                 </Text>
-                <Text fontSize="sm" color="primary.500" mt={3}>
+                <Text fontSize="sm" color="brand.500" mt={3}>
                   Read More
                 </Text>
               </Box>
@@ -111,7 +111,7 @@ const Home = () => {
                 <Text fontSize="sm" color="gray.600">
                   Lorem ipsum dolor sit amet consect eturadipiscing eiusmod
                 </Text>
-                <Text fontSize="sm" color="primary.500" mt={3}>
+                <Text fontSize="sm" color="brand.500" mt={3}>
                   Read More
                 </Text>
                 <Box display={'flex'} justifyContent={'center'}>
@@ -125,7 +125,7 @@ const Home = () => {
 
         </Box>
 
-        <Box position="relative" width="100%" mt={150} px={['30px', '50px', '200px']} >
+        <Box position="relative" width="100%" mt={150} px={['30px', '50px', '200px']} py={10}>
           <Heading as="h2" size="xl" textAlign="center">
             Fully featured to buy, trade and invest in Cryptop
           </Heading>
@@ -264,8 +264,8 @@ const Home = () => {
             <Button
 
               borderRadius="20px"
-              colorScheme={"primary"}
-              bgGradient={'linear(to-r, primary.500, primary.600)'}
+              colorScheme={"brand"}
+              bgGradient={'linear(to-r, brand.500, primary.600)'}
               px={[2, 4, 6]}
               py={[2, 3, 4]}
             >
