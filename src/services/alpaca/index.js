@@ -1,9 +1,9 @@
-import Alpaca from '@alpacahq/alpaca-trade-api';
-const alpaca = new Alpaca({
-  keyId: "CKKH0I1K1FDZ7FIQKMDU",
-  secretKey: "c5FGB00h5k6Xq6rzTiQxiD1Grlh2M3lhkgwaE2fR",
-  paper: true, // set to false for live trading,
-  baseUrl: 'https://broker-api.sandbox.alpaca.markets'
-});
+import Alpaca from '@alpacahq/alpaca-trade-api'
 
-export default alpaca;
+const alpaca = new Alpaca({
+    keyId: 'PKVZ7805H0SR5VOZJJVR',
+    secretKey: 'gdP7Ev5ITmQMa7IqWb6KENdSUT4Xrhkz66yU5RuB',
+    paper: true,
+})
+
+export default alpaca

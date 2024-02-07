@@ -12,6 +12,7 @@ import {
 
 // Custom components
 import Card from '@/components/card/Card';
+import Link from 'next/link';
 
 const columnHelper = createColumnHelper();
 
@@ -60,8 +61,8 @@ export default function StocksTable(props) {
 			)
 		}),
 
-		columnHelper.accessor('id', {
-			id: 'id',
+		columnHelper.accessor('symbol', {
+			id: 'symbol',
 			header: () => (
 				<Text
 					justifyContent='space-between'
@@ -72,9 +73,11 @@ export default function StocksTable(props) {
 				</Text>
 			),
 			cell: (info) => (
-				<Button colorScheme={'brand'} size={'sm'} fontWeight='700'>
-					View
-				</Button>
+				<Link href={'/user/stocks/' + info.getValue()}>
+					<Button colorScheme={'brand'} size={'sm'} fontWeight='700'>
+						View
+					</Button>
+				</Link>
 			)
 		})
 	];
@@ -93,7 +96,6 @@ export default function StocksTable(props) {
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
-		debugTable: true,
 	});
 
 	return (
@@ -154,53 +156,55 @@ export default function StocksTable(props) {
 						})}
 					</Tbody>
 					<Tfoot>
-  <Tr>
-    <Td colSpan={columns.length} textAlign="center">
-      <Button onClick={() => table.previousPage()} disabled={!table.canPreviousPage}>
-        Previous
-      </Button>{' '}
-      <Button onClick={() => table.nextPage()} disabled={!table.canNextPage}>
-        Next
-      </Button>{' '}
-      <Text as="span">
-        Page{' '}
-        <strong>
-          {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
-        </strong>{' '}
-      </Text>
-      <Text as="span">
-        | Go to page:{' '}
-        <input
-          type="number"
-          defaultValue={table.getState().pagination.pageIndex + 1}
-          onChange={(e) => {
-            const page = e.target.value ? Number(e.target.value) - 1 : 0;
-            table.setPageIndex(page);
-          }}
-          style={{ width: '50px' }}
-        />
-      </Text>{' '}
-      <Text as="span">
-        Show{' '}
-        <select
-          value={table.pageSize}
-          onChange={(e) => {
-            table.setPageSize(Number(e.target.value));
-          }}
-        >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              {pageSize}
-            </option>
-          ))}
-        </select>{' '}
-        entries
-      </Text>
-    </Td>
-  </Tr>
-</Tfoot>
-
-
+						<Tr>
+							<Td >
+								<Button onClick={() => table.previousPage()} disabled={!table.canPreviousPage}>
+									Previous
+								</Button>{' '}
+								<Button onClick={() => table.nextPage()} disabled={!table.canNextPage}>
+									Next
+								</Button>{' '}
+								<Text as="span">
+									Page{' '}
+									<strong>
+										{table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+									</strong>{' '}
+								</Text>
+							</Td>
+							<Td textAlign="center">
+								<Text as="span">
+									| Go to page:{' '}
+									<input
+										type="number"
+										defaultValue={table.getState().pagination.pageIndex + 1}
+										onChange={(e) => {
+											const page = e.target.value ? Number(e.target.value) - 1 : 0;
+											table.setPageIndex(page);
+										}}
+										style={{ width: '50px' }}
+									/>
+								</Text>{' '}
+							</Td>
+							<Td textAlign={'end'}>
+								<Text as="span">
+									Show{' '}
+									<select
+										value={table.pageSize}
+										onChange={(e) => {
+											table.setPageSize(Number(e.target.value));
+										}}
+									>
+										{[10, 20, 30, 40, 50].map((pageSize) => (
+											<option key={pageSize} value={pageSize}>
+												{pageSize}
+											</option>
+										))}
+									</select>{' '}
+									entries
+								</Text>
+							</Td>
+						</Tr>
+					</Tfoot>
 				</Table>
 			</Box>
 		</Card>

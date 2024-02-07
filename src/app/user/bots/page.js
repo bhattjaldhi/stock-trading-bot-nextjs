@@ -6,7 +6,7 @@ import tableDataColumns from '@/views/user/datatables/variables/botsDataColumns'
 
 export default function DataTables() {
   return (
-    <Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
+    <Box pt={{ base: '180px', md: '80px', xl: '80px' }}>
       <SimpleGrid
         mb="20px"
         columns={{ sm: 1, md: 1 }}

@@ -2,17 +2,17 @@
 import { Box, SimpleGrid } from '@chakra-ui/react';
 import StocksTable from '@/views/user/datatables/components/StocksTable';
 import React, { useEffect } from 'react';
-import alpacaMarket from '@/api/alpaca/alpacaMarket';
+import alpaca from '@/services/alpaca';
 
 export default function Page() {
 
   const [tableDataColumns, setTableDataColumns] = React.useState(undefined)
-console.log(tableDataColumns)
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let res = await alpacaMarket.getAssets()
-        setTableDataColumns(res.data)
+        let res = await alpaca.getAssets()
+        res.sort((a, b) => a.symbol.localeCompare(b.symbol));
+        setTableDataColumns(res)
       } catch (error) {
         console.log(error)
       }
@@ -21,7 +21,7 @@ console.log(tableDataColumns)
   }, [])
 
   return (
-    <Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
+    <Box pt={{ base: '180px', md: '80px', xl: '80px' }}>
       <SimpleGrid
         mb="20px"
         columns={{ sm: 1, md: 1 }}

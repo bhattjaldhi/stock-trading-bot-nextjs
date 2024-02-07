@@ -18,7 +18,7 @@ const routes= [
   {
     name: 'Stock Marketplace',
     layout: '/user',
-    path: '/stocks',
+    path: '/stocks/list',
     icon: (
       <Icon
         as={MdOutlineShoppingCart}
@@ -33,7 +33,7 @@ const routes= [
     name: 'Manage Bots',
     layout: '/user',
     icon: <Icon as={MdBarChart} width="20px" height="20px" color="inherit" />,
-    path: '/bots/list',
+    path: '/bots',
   },
   {
     name: 'AI Knowledge Hub',

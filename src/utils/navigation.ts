@@ -1,3 +1,7 @@
+import routes from "@/routes";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+
 // NextJS Requirement
 export const isWindowAvailable = () => typeof window !== "undefined";
 
@@ -25,3 +29,21 @@ export const getActiveNavbar = (routes): boolean => {
 export const getActiveNavbarText = (routes): string | boolean => {
   return getActiveRoute(routes) || false;
 };
+
+export const useActiveNavbarInfo = () => {
+  const [activeRoute, setActiveRoute] = useState("Default Brand Text");
+  const [activeNavbar, setActiveNavbar] = useState(false);
+  const pathname = usePathname()
+
+
+  useEffect(() => {
+    setActiveRoute(getActiveRoute(routes));
+    setActiveNavbar(getActiveNavbar(routes));
+  }, [pathname]);
+
+  return {
+    activeRoute,
+    activeNavbar
+  };
+};
+

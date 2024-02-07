@@ -14,7 +14,7 @@ import { useState, useEffect } from 'react'
 import NavbarLinks from '@/components/Navbar/NavbarLinks'
 import { isWindowAvailable } from '@/utils/navigation'
 
-export default function AdminNavbar (props) {
+export default function NavBar (props) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {

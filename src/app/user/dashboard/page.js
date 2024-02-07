@@ -11,7 +11,7 @@ export default function Page() {
 
 
   return (
-      <Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
+      <Box pt={{ base: '180px', md: '80px', xl: '80px' }}>
         <SimpleGrid
           columns={{ base: 1, md: 2, lg: 2, '2xl': 4 }}
           gap="20px"

@@ -11,16 +11,17 @@ import {
 
 // Custom components
 import Card from '@/components/card/Card';
+import Link from 'next/link';
 
 const columnHelper = createColumnHelper();
 
 // const columns = columnsDataCheck;
 export default function BotsTable(props) {
 	const { tableData } = props;
-	const [ sorting, setSorting ] = React.useState([]);
+	const [sorting, setSorting] = React.useState([]);
 	const textColor = useColorModeValue('secondaryGray.900', 'white');
 	const borderColor = useColorModeValue('gray.200', 'whiteAlpha.100');
-	let defaultData= tableData;
+	let defaultData = tableData;
 	const columns = [
 		columnHelper.accessor('stock', {
 			id: 'stock',
@@ -34,7 +35,7 @@ export default function BotsTable(props) {
 				</Text>
 			),
 			cell: (info) => (
-				<Flex align='center'> 
+				<Flex align='center'>
 					<Text color={textColor} fontSize='sm' fontWeight='700'>
 						{info.getValue()}
 					</Text>
@@ -111,7 +112,7 @@ export default function BotsTable(props) {
 			)
 		})
 	];
-	const [ data, setData ] = React.useState(() => [ ...defaultData ]);
+	const [data, setData] = React.useState(() => [...defaultData]);
 	const table = useReactTable({
 		data,
 		columns,
@@ -121,7 +122,6 @@ export default function BotsTable(props) {
 		onSortingChange: setSorting,
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
-		debugTable: true
 	});
 	return (
 		<Card flexDirection='column' w='100%' px='0px' overflowX={{ sm: 'scroll', lg: 'hidden' }}>
@@ -129,13 +129,15 @@ export default function BotsTable(props) {
 				<Text color={textColor} fontSize='22px' mb="4px" fontWeight='700' lineHeight='100%'>
 					AI Bots
 				</Text>
-				<Button colorScheme={'brand'} size={'sm'}>+ Create Bot</Button>
+				<Link href="/user/bots/create">
+					<Button colorScheme={'brand'} size={'sm'}>+ Create Bot</Button>
+				</Link>
 			</Flex>
 			<Box>
 				<Table variant='simple' color='gray.500' mb='24px' mt="12px">
 					<Thead>
 						{table.getHeaderGroups().map((headerGroup) => (
-							<Tr  key={headerGroup.id}>
+							<Tr key={headerGroup.id}>
 								{headerGroup.headers.map((header) => {
 									return (
 										<Th
