@@ -1,59 +1,76 @@
 'use client';
 import React from 'react';
-import { Box, Button, FormControl, FormErrorMessage, FormLabel, Heading, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
-import Link from "next/link";
+import { Alert, AlertIcon, Box, Button, FormControl, FormErrorMessage, FormLabel, Heading, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+import CalendarInput from '@/components/CalendarInput';
+import { collection, addDoc } from "firebase/firestore";
+import { COLLECTIONS, db } from '@/firebase/firebaseConfig';
+import { useRouter } from 'next/navigation';
+
 export default function Create() {
 
-    const {
-        handleSubmit,
-        register,
-        formState: { errors, isSubmitting },
-      } = useForm()
-    
-      const onSubmit = async (values) => {
-    
-        
-      }
+  const { replace } = useRouter()
+  const {
+    handleSubmit,
+    setValue,
+    register,
+    formState: { isSubmitSuccessful, errors, isSubmitting },
+  } = useForm()
+
+  const onSubmit = async (values) => {
+    await addDoc(collection(db, COLLECTIONS.BOTS), values);
+    setTimeout(() => {
+      replace('/user/bots')
+    }, 1000)
+  }
 
   return (
-    <Box pt={{ base: '180px', md: '80px', xl: '80px' }}>
-      <Box width="100%" maxWidth={"600px"} bg="white"  borderRadius={20}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Box px={20} py={20}>
-            <FormControl isInvalid={errors.email}>
-              <FormLabel>Email address</FormLabel>
-              <Input type='email' placeholder={'Enter Email'}
-                {...register('email', {
-                  required: 'Email is required',
-                })} />
-              <FormErrorMessage>
-                {errors.email && errors.email.message}
-              </FormErrorMessage>
-            </FormControl>
+    <Box width="100%" maxWidth={"600px"} bg="white" mt={['20px', '50px', '100px']} borderRadius={20} p={10}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Heading as="h3" size="md" width={'100%'}>Create a bot</Heading>
+        {isSubmitSuccessful && <Alert status='success' variant='left-accent' mt={3}>
+          <AlertIcon />
+          Bot has been created successfully.
+        </Alert>}
+        <Box mt={5}>
+          <FormControl isInvalid={errors.symbol}>
+            <FormLabel>Symbol</FormLabel>
+            <Input type="text" placeholder={'Enter stock symbol'}
+              {...register('symbol', {
+                required: 'Symbol is required',
+              })} />
+            <FormErrorMessage>
+              {errors.symbol && errors.symbol.message}
+            </FormErrorMessage>
+          </FormControl>
+          <FormControl isInvalid={errors.amount} mt={7}>
+            <FormLabel>Amount</FormLabel>
+            <Input type="number" placeholder={'Enter amount'}
+              {...register('amount', {
+                required: 'Amount is required',
+              })} />
+            <FormErrorMessage>
+              {errors.amount && errors.amount.message}
+            </FormErrorMessage>
+          </FormControl>
+          <FormControl isInvalid={errors.date} mt={7}>
+            <FormLabel>Expires on</FormLabel>
+            <CalendarInput
+              {...register('date', {
+                required: 'Date is required',
+              })}
+              onDateChange={(value) => setValue('date', value)}
+            />
+            <FormErrorMessage>
+              {errors.date && errors.date.message}
+            </FormErrorMessage>
+          </FormControl>
 
-            <Box>
-              <Text color={"brand.500"} fontSize={'sm'} mt={7}>
-                <Link href="/forgot-password">Forgot Password?</Link>
-              </Text>
-            </Box>
-            <Button type="submit" colorScheme={"brand"} mt={7} borderRadius={10} width={"100%"} isLoading={isSubmitting}>
-              Sign in
-            </Button>
-            <Box display={"flex"} mt={7} alignItems={"center"}>
-              <Text fontSize={'sm'} justifyContent={"center"} display={"flex"}>
-                New User ?
-              </Text>
-              <Link href="/register">
-                <Text color={"brand.500"} ml={2}>
-                  Create a new account.
-                </Text>
-              </Link>
-            </Box>
-          </Box>
-        </form>
-
-      </Box>
+          <Button type="submit" colorScheme={"brand"} mt={7} borderRadius={10} width={"100%"} isLoading={isSubmitting}>
+            Create
+          </Button>
+        </Box>
+      </form>
     </Box>
   );
 }

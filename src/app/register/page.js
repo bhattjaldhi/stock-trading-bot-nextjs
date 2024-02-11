@@ -74,7 +74,7 @@ export default function Page() {
             <Link href="/forgot-password">
               <Text color={"brand.500"} fontSize={'sm'} mt={7}>Forgot Password?</Text>
             </Link>
-            <Button colorScheme={"primary"} mt={7} borderRadius={10} width={"100%"} type='submit' isLoading={isSubmitting}>Sign up</Button>
+            <Button colorScheme={"brand"} mt={7} borderRadius={10} width={"100%"} type='submit' isLoading={isSubmitting}>Sign up</Button>
             <Box display={"flex"} mt={7} alignItems={"center"}>
               <Text fontSize={'sm'} justifyContent={"center"} display={"flex"}>
                 Already have an account ?

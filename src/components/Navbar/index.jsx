@@ -7,7 +7,6 @@ import {
   BreadcrumbLink,
   Flex,
   Link,
-  Text,
   useColorModeValue
 } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
@@ -108,8 +107,8 @@ export default function NavBar (props) {
         <Box mb={{ sm: '8px', md: '0px' }}>
           <Breadcrumb>
             <BreadcrumbItem color={secondaryText} fontSize='sm' mb='5px'>
-              <BreadcrumbLink href='#' color={secondaryText}>
-                Pages
+              <BreadcrumbLink href='/user/dashboard' color={secondaryText}>
+                Dashboard
               </BreadcrumbLink>
             </BreadcrumbItem>
 

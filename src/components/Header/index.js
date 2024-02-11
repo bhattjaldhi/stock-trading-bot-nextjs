@@ -31,7 +31,7 @@ const Header = () => {
           <Flex display={{ base: "none", md: "flex" }} align="center">
             <Link mr={4}>Home</Link>
             <Link mr={4}>About</Link>
-            <Link mr={4}>Pricing</Link>
+            <NextLink href="/pricing" style={{marginRight: 15}}>Pricing</NextLink>
             <Link mr={4}>Contact</Link>
             <Link mr={4}>Privacy</Link>
             <Link mr={4}>Terms</Link>

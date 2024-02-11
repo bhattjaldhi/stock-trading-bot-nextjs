@@ -13,6 +13,7 @@ export default function Page() {
   const {
     handleSubmit,
     register,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm()
 
@@ -21,11 +22,18 @@ export default function Page() {
     const { result, error } = await signIn(values.email, values.password);
 
     if (error) {
-      return console.log(error)
+      if (error.code === "auth/invalid-credential") {
+        setError('email', { message: "Invalid Email or Password" }, { shouldFocus: true })
+        setError('password', { message: "Invalid Email or Password" })
+      }
+      if(error.code === 'auth/too-many-requests'){
+        setError('email', { message: "Too many requests made with invalid credentials, please try again later." }, { shouldFocus: true })
+      }
+      return
     }
 
     // else successful
-    return router.push("/dashboard")
+    return router.push("/user/dashboard")
   }
 
   function PasswordInput(props) {

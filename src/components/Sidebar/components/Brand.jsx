@@ -1,8 +1,7 @@
 // Chakra imports
-import { Flex, useColorModeValue } from '@chakra-ui/react';
+import { Box, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 
 // Custom components
-import { HorizonLogo } from '@/components/Icons';
 import { HSeparator } from '@/components/Separator';
 
 export default function Brand() {
@@ -11,7 +10,9 @@ export default function Brand() {
 
 	return (
 		<Flex alignItems='center' flexDirection='column'>
-			<HorizonLogo h='26px' w='175px' my='32px' color={logoColor} />
+			<Box h="100px" w="100%">
+			<Text my='32px' fontSize={'3xl'} textAlign={'center'}>Br@in</Text>
+			</Box>
 			<HSeparator mb='20px' />
 		</Flex>
 	);

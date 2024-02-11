@@ -10,7 +10,9 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let res = await alpaca.getAssets()
+        let res = await alpaca.getAssets({
+          status: 'active'
+        })
         res.sort((a, b) => a.symbol.localeCompare(b.symbol));
         setTableDataColumns(res)
       } catch (error) {

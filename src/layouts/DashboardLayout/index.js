@@ -1,9 +1,9 @@
 import Footer from "@/components/Footer";
-import AdminNavbar from "@/components/Navbar";
+import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import { SidebarContext } from "@/contexts/SidebarContext";
 import routes from "@/routes";
-import { getActiveNavbar, getActiveRoute, useActiveNavbarInfo } from "@/utils/navigation";
+import { useActiveNavbarInfo } from "@/utils/navigation";
 import { Box, Portal, useColorModeValue } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -41,7 +41,7 @@ export default function DashboardLayout({ children, ...rest }) {
 
                 <Portal>
                     <Box>
-                        <AdminNavbar
+                        <Navbar
                             logoText={'Brain'}
                             brandText={activeRoute}
                             secondary={activeNavbar}

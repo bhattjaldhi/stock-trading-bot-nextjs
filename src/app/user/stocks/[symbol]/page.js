@@ -8,7 +8,6 @@ import StockDailyLineChart from "@/views/user/charts/StockDailyLineChart";
 
 export default function Page({ params }) {
 
-    const [stockDetails, setStockDetails] = useState()
     const [lines, setLines] = useState([])
 
     useEffect(() => {
@@ -23,7 +22,7 @@ export default function Page({ params }) {
                 },
                 alpaca.configuration
             );
-            const barset = [{name: 'Close price', data:[]}];
+            const barset = [{ name: 'Close price', data: [] }];
             for await (let b of bars) {
                 barset[0].data.push({ x: b.Timestamp, y: b.ClosePrice });
             }

@@ -22,7 +22,9 @@ import { SidebarResponsive } from '@/components/Sidebar';
 import navImage from '/public/img/layout/Navbar.png';
 import { FaEthereum } from 'react-icons/fa';
 import { MdInfoOutline, MdNotificationsNone } from 'react-icons/md';
+import { getAuth, signOut } from "firebase/auth";
 import routes from '@/routes';
+import { useRouter } from 'next/navigation';
 
 export default function NavBarLinks(props) {
   const { secondary } = props;
@@ -40,6 +42,18 @@ export default function NavBarLinks(props) {
     '14px 17px 40px 4px rgba(112, 144, 176, 0.06)',
   );
   const borderButton = useColorModeValue('secondaryGray.500', 'whiteAlpha.200');
+
+  const { replace } = useRouter()
+
+  const handleLogout = () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      replace('/')
+    }).catch((error) => {
+      // An error happened.
+      console.log(error)
+    });
+  }
 
   return (
     <Flex
@@ -133,7 +147,7 @@ export default function NavBarLinks(props) {
               Mark all read
             </Text>
           </Flex>
-         
+
         </MenuList>
       </Menu>
 
@@ -260,6 +274,7 @@ export default function NavBarLinks(props) {
               color="red.400"
               borderRadius="8px"
               px="14px"
+              onClick={handleLogout}
             >
               <Text fontSize="sm">Log out</Text>
             </MenuItem>

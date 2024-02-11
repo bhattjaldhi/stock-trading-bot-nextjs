@@ -9,7 +9,7 @@ function Content(props) {
 
 	// SIDEBAR
 	return (
-		<Flex direction='column' height='100%' pt='25px' borderRadius='30px'>
+		<Flex direction='column' height='100%' borderRadius='30px'>
 			<Brand />
 			<Stack direction='column' mt='8px' mb='auto'>
 				<Box ps='20px' pe={{ lg: '16px', '2xl': '16px' }}>

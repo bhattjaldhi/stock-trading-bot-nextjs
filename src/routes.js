@@ -18,7 +18,7 @@ const routes= [
   {
     name: 'Stock Marketplace',
     layout: '/user',
-    path: '/stocks/list',
+    path: '/stocks',
     icon: (
       <Icon
         as={MdOutlineShoppingCart}

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 // NextJS Requirement
 export const isWindowAvailable = () => typeof window !== "undefined";
 
-export const findCurrentRoute = (routes) => { 
+export const findCurrentRoute = () => { 
   const foundRoute = routes.find(
     (route) =>
       isWindowAvailable() &&
@@ -16,18 +16,18 @@ export const findCurrentRoute = (routes) => {
   return foundRoute;
 };
 
-export const getActiveRoute = (routes): string => {
-  const route = findCurrentRoute(routes);
+export const getActiveRoute = (): string => {
+  const route = findCurrentRoute();
   return route?.name || "Default Brand Text";
 };
 
-export const getActiveNavbar = (routes): boolean => {
-  const route = findCurrentRoute(routes);
+export const getActiveNavbar = (): boolean => {
+  const route = findCurrentRoute();
   return route?.secondary;
 };
 
-export const getActiveNavbarText = (routes): string | boolean => {
-  return getActiveRoute(routes) || false;
+export const getActiveNavbarText = (): string | boolean => {
+  return getActiveRoute() || false;
 };
 
 export const useActiveNavbarInfo = () => {
@@ -36,9 +36,10 @@ export const useActiveNavbarInfo = () => {
   const pathname = usePathname()
 
 
+
   useEffect(() => {
-    setActiveRoute(getActiveRoute(routes));
-    setActiveNavbar(getActiveNavbar(routes));
+    setActiveRoute(getActiveRoute());
+    setActiveNavbar(getActiveNavbar());
   }, [pathname]);
 
   return {

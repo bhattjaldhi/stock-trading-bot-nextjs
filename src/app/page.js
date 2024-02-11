@@ -3,6 +3,7 @@
 import RootLayout from "@/layouts/RootLayout";
 import { Box, Button, Grid, GridItem, Heading, Text } from "@chakra-ui/react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Home = () => {
   return (
@@ -15,23 +16,25 @@ const Home = () => {
       >
         <Box mt={[100, 150, 200]} mx="auto" width={["90%", "90%", "900px"]} position="relative" px={[4, 8, 12]}>
           <Box textAlign="center">
-            <Heading as="h2"  size={{base: 'xl', md: '2xl', lg: "3xl"}} mb={4}>
+            <Heading as="h2" size={{ base: 'xl', md: '2xl', lg: "3xl" }} mb={4}>
               Build Wealth Automatically With Br@in
             </Heading>
-            <Text fontSize={{base: 'sm', md: 'md', lg: "lg"}} color="gray.600">
+            <Text fontSize={{ base: 'sm', md: 'md', lg: "lg" }} color="gray.600">
               Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut dolor sit
             </Text>
           </Box>
         </Box>
-        <Button
-          mt={6}
-          borderRadius="20px"
-          colorScheme={"brand"}
-          px={[2, 4, 6]} // Responsive padding
-          py={[2, 3, 4]}
-        >
-          Get Started
-        </Button>
+        <Link href="/login">
+          <Button
+            mt={6}
+            borderRadius="20px"
+            colorScheme={"brand"}
+            px={[2, 4, 6]} // Responsive padding
+            py={[2, 3, 4]}
+          >
+            Get Started
+          </Button>
+        </Link>
         <Box position="relative" width="100%" height={['200px', '400px', '900px']} mt={8} px={[4, 8, 12]}>
           <Image src="/assets/images/home_banner.png" layout="responsive" objectFit="cover" width={1500} height={500} alt="banner" />
         </Box>

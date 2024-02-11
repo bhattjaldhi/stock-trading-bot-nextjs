@@ -1,4 +1,4 @@
-import { Flex, Box, Table, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue, Button } from '@chakra-ui/react';
+import { Flex, Box, Table, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue, Button, Menu, MenuButton, MenuList, MenuItem, IconButton } from '@chakra-ui/react';
 import * as React from 'react';
 
 import {
@@ -12,19 +12,22 @@ import {
 // Custom components
 import Card from '@/components/card/Card';
 import Link from 'next/link';
+import moment from 'moment';
+import { HamburgerIcon } from '@chakra-ui/icons';
 
 const columnHelper = createColumnHelper();
 
 // const columns = columnsDataCheck;
 export default function BotsTable(props) {
-	const { tableData } = props;
+	const { tableData, onDelete } = props;
 	const [sorting, setSorting] = React.useState([]);
 	const textColor = useColorModeValue('secondaryGray.900', 'white');
 	const borderColor = useColorModeValue('gray.200', 'whiteAlpha.100');
-	let defaultData = tableData;
+	const defaultData = tableData
+
 	const columns = [
-		columnHelper.accessor('stock', {
-			id: 'stock',
+		columnHelper.accessor('symbol', {
+			id: 'symbol',
 			header: () => (
 				<Text
 					justifyContent='space-between'
@@ -42,8 +45,8 @@ export default function BotsTable(props) {
 				</Flex>
 			)
 		}),
-		columnHelper.accessor('invested_value', {
-			id: 'invested_value',
+		columnHelper.accessor('amount', {
+			id: 'amount',
 			header: () => (
 				<Text
 					justifyContent='space-between'
@@ -72,7 +75,7 @@ export default function BotsTable(props) {
 			),
 			cell: (info) => (
 				<Text color={textColor} fontSize='sm' fontWeight='700'>
-					{info.getValue()}
+					{info.getValue() || 0}
 				</Text>
 			)
 		}),
@@ -84,12 +87,12 @@ export default function BotsTable(props) {
 					align='center'
 					fontSize={{ sm: '10px', lg: '12px' }}
 					color='gray.400'>
-					DATE
+					EXPIRES ON
 				</Text>
 			),
 			cell: (info) => (
 				<Text color={textColor} fontSize='sm' fontWeight='700'>
-					{info.getValue()}
+					{moment(info.getValue()?.seconds * 1000).format('DD MMM, yyyy')}
 				</Text>
 			)
 		}),
@@ -106,9 +109,20 @@ export default function BotsTable(props) {
 				</Text>
 			),
 			cell: (info) => (
-				<Button colorScheme={'brand'} size={'sm'} fontWeight='700'>
-					Edit
-				</Button>
+				<Menu>
+					<MenuButton
+						as={IconButton}
+						aria-label='Options'
+						icon={<HamburgerIcon />}
+						variant='outline'
+					/>
+					<MenuList>
+						<MenuItem>Edit</MenuItem>
+						<MenuItem onClick={() => {
+							info.table.options.meta.removeRow(info.row.index); 
+						}}>Delete</MenuItem>
+					</MenuList>
+				</Menu>
 			)
 		})
 	];
@@ -122,7 +136,16 @@ export default function BotsTable(props) {
 		onSortingChange: setSorting,
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
+		meta: {
+			removeRow: (rowIndex) => {
+				const setFilterFunc = (old) =>
+				old.filter((_row, index) => index !== rowIndex);
+			  setData(setFilterFunc);
+			  onDelete(rowIndex)
+			}
+		}
 	});
+
 	return (
 		<Card flexDirection='column' w='100%' px='0px' overflowX={{ sm: 'scroll', lg: 'hidden' }}>
 			<Flex px='25px' mb="8px" justifyContent='space-between' align='center'>
