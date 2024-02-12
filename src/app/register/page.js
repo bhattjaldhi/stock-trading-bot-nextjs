@@ -5,6 +5,7 @@ import { Box, Button, FormControl, FormErrorMessage, FormLabel, Heading, Input, 
 import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 
 export default function Page() {
@@ -12,14 +13,23 @@ export default function Page() {
   const {
     handleSubmit,
     register,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm()
 
+  const { replace } = useRouter()
+
   function onSubmit(values) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       signUp(values.email, values.password).then(response => {
         if (!response.error) {
+          replace('/setup-account')
           resolve()
+        } else {
+          if (response.error.code === "auth/email-already-in-use") {
+            setError('email', { message: "Email is already in use." }, { shouldFocus: true })
+          } 
+          reject()
         }
       })
     })
@@ -50,10 +60,10 @@ export default function Page() {
 
   return <RootLayout>
     <Box display="flex" alignItems="center" flexDirection={'column'} width="100%" height={"100vh"} bg="gray.50" px={"20px"}>
-      <Box width="100%" maxWidth={"600px"} bg="white" mt={['20px', '50px', '100px']} borderRadius={20}>
+      <Box width="100%" maxWidth={"600px"} bg="white" mt={['20px', '50px', '70px', '100px']} borderRadius={20}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Heading as="h3" size="md" textAlign={'center'} width={'100%'} mt={20}>Sign Up</Heading>
-          <Box my={20} px={20}>
+          <Box my={20} px={[10, 10, 10, 20]}>
             <FormControl isInvalid={errors.email}>
               <FormLabel>Email address</FormLabel>
               <Input type='email' placeholder={'Enter Email'}

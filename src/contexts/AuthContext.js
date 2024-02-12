@@ -6,7 +6,7 @@ import { Box, Progress } from "@chakra-ui/react";
 
 const auth = getAuth(firebaseApp);
 
-const PUBLIC_ROUTES = ['/', '/pricing']
+const PUBLIC_ROUTES = ['/', '/pricing', '/login', '/register', '/setup-account']
 
 export const AuthContext = React.createContext({});
 

@@ -20,7 +20,8 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 export const COLLECTIONS = {
-  BOTS: 'bots'
+  USERS: 'users',
+  BOTS: 'bots',
 }
 
 export default app

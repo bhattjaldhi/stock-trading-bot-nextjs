@@ -62,10 +62,10 @@ export default function Page() {
 
   return <RootLayout>
     <Box display="flex" alignItems="center" flexDirection={'column'} width="100%" height={"100vh"} bg="gray.50" px={"20px"}>
-      <Box width="100%" maxWidth={"600px"} bg="white" mt={['20px', '50px', '100px']} borderRadius={20}>
+      <Box width="100%" maxWidth={"600px"} bg="white" mt={['20px', '50px', '70px', '100px']} borderRadius={20}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Heading as="h3" size="md" textAlign={'center'} width={'100%'} mt={20}>Sign In</Heading>
-          <Box my={20} px={20}>
+          <Box my={20} px={[10, 10, 10, 20]}>
             <FormControl isInvalid={errors.email}>
               <FormLabel>Email address</FormLabel>
               <Input type='email' placeholder={'Enter Email'}
