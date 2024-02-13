@@ -1653,6 +1653,11 @@
   resolved "https://registry.yarnpkg.com/@uselessdev/datepicker/-/datepicker-2.7.0.tgz#15d9b2fa16ac29d3aa56fa2e8044f2646b229ace"
   integrity sha512-OmjEv3MoXoxTKABmcyTxnUcBqqT4OYMWldcD+TyJHfoMOlrdKhesv+04i3Qa/7N26nVmtsn15w4gQGhMJS3n7g==
 
+"@vercel/speed-insights@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@vercel/speed-insights/-/speed-insights-1.0.9.tgz#ad748c238c4ed58b32cc8a398f28abe507dabd53"
+  integrity sha512-f+XFP0O+aZ4Olj9h+BitkB1b4NJQaxtyCb69wWuDxytJHY6Pa4QtZPdBUftHOcajUCHRVeq062fk3MKXKtjNVQ==
+
 "@yr/monotone-cubic-spline@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@yr/monotone-cubic-spline/-/monotone-cubic-spline-1.0.3.tgz#7272d89f8e4f6fb7a1600c28c378cc18d3b577b9"

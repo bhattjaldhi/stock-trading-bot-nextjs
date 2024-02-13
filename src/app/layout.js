@@ -1,3 +1,5 @@
+import { SpeedInsights } from '@vercel/speed-insights/next';
+
 import { fonts } from "./fonts";
 import "@/styles/App.css";
 import { Providers } from "./providers";
@@ -11,6 +13,7 @@ export default function Layout({ children }) {
     <html lang="en" className={fonts.poppins.variable}>
       <body>
           <Providers>{children}</Providers>
+          <SpeedInsights />
       </body>
     </html>
   );

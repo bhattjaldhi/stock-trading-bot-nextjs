@@ -19,6 +19,7 @@
     "@stripe/stripe-js": "^3.0.0",
     "@tanstack/react-table": "^8.11.8",
     "@uselessdev/datepicker": "^2.7.0",
+    "@vercel/speed-insights": "^1.0.9",
     "apexcharts": "^3.45.2",
     "axios": "^1.6.7",
     "date-fns": "^3.3.1",
