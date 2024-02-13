@@ -10,7 +10,6 @@ import { Button, Flex } from "@chakra-ui/react";
 export default function SubscriptionForm() {
     const stripe = useStripe();
     const elements = useElements();
-
     const [message, setMessage] = React.useState(null);
     const [isLoading, setIsLoading] = React.useState(false);
 
@@ -19,7 +18,9 @@ export default function SubscriptionForm() {
             return;
         }
 
-        const clientSecret = process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY
+        const clientSecret = new URLSearchParams(window.location.search).get(
+            "payment_intent_client_secret"
+        );
 
         if (!clientSecret) {
             return;
@@ -58,7 +59,7 @@ export default function SubscriptionForm() {
             elements,
             confirmParams: {
                 // Make sure to change this to your payment completion page
-                return_url: `${window.location.origin}/setup-account/success`,
+                return_url: `${window.location.origin}/setup-account`,
             },
         });
 
