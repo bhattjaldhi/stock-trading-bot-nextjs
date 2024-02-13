@@ -13,40 +13,9 @@ export default function SubscriptionForm() {
     const [message, setMessage] = React.useState(null);
     const [isLoading, setIsLoading] = React.useState(false);
 
-    React.useEffect(() => {
-        if (!stripe) {
-            return;
-        }
-
-        const clientSecret = new URLSearchParams(window.location.search).get(
-            "payment_intent_client_secret"
-        );
-
-        if (!clientSecret) {
-            return;
-        }
-
-        stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-            switch (paymentIntent.status) {
-                case "succeeded":
-                    setMessage("Payment succeeded!");
-                    break;
-                case "processing":
-                    setMessage("Your payment is processing.");
-                    break;
-                case "requires_payment_method":
-                    setMessage("Your payment was not successful, please try again.");
-                    break;
-                default:
-                    setMessage("Something went wrong.");
-                    break;
-            }
-        });
-    }, [stripe]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         if (!stripe || !elements) {
             // Stripe.js hasn't yet loaded.
             // Make sure to disable form submission until Stripe.js has loaded.
@@ -55,13 +24,14 @@ export default function SubscriptionForm() {
 
         setIsLoading(true);
 
-        const { error } = await stripe.confirmPayment({
+        const result = await stripe.confirmPayment({
             elements,
             confirmParams: {
                 // Make sure to change this to your payment completion page
-                return_url: `${window.location.origin}/setup-account`,
+                return_url: `${window.location.origin}/setup-account/success`,
             },
         });
+        const {error} = result
 
         // This point will only be reached if there is an immediate error when
         // confirming the payment. Otherwise, your customer will be redirected to
@@ -86,7 +56,7 @@ export default function SubscriptionForm() {
 
             <PaymentElement id="payment-element" options={paymentElementOptions} />
             <Flex justify={'end'}>
-                <Button disabled={isLoading || !stripe || !elements} id="submit" mt={3}>
+                <Button disabled={isLoading || !stripe || !elements} id="submit" type="submit" mt={3}>
                     <span id="button-text">
                         {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
                     </span>

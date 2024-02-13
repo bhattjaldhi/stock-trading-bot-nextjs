@@ -29,17 +29,18 @@ export default function Page({ id, amount, onPrevious }) {
     appearance,
   };
 
-  return <Flex my={20} justify={'center'}>
-
-    <Box width={'700px'} p={10} bg="white" borderRadius={20}>
-      {clientSecret && (
-        <Elements options={options} stripe={stripePromise}>
-          <SubscriptionForm />
-        </Elements>
-      )}
-    </Box>
+  return <Box>
+    <Flex my={20} justify={'center'}>
+      <Box width={'700px'} p={10} bg="white" borderRadius={20}>
+        {clientSecret && (
+          <Elements options={options} stripe={stripePromise}>
+            <SubscriptionForm />
+          </Elements>
+        )}
+      </Box>
+    </Flex>
     <Flex justify="space-between">
-            <Button colorScheme={'brand'} onClick={onPrevious}>Back</Button>
-        </Flex>
-  </Flex>
+      <Button colorScheme={'brand'} onClick={onPrevious}>Back</Button>
+    </Flex>
+  </Box>
 }
