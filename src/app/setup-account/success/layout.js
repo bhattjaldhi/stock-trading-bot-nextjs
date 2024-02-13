@@ -2,15 +2,15 @@
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 export default function Layout({ children }) {
 
-    const router = useRouter();
+    const searchParams = useSearchParams()
 
-    const clientSecret = router.query.payment_intent_client_secret;
+    const clientSecret = searchParams.get('payment_intent_client_secret');
 
     const appearance = {
         theme: 'stripe',

@@ -3,22 +3,21 @@
 import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { useStripe } from "@stripe/react-stripe-js";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import React from "react";
 
 
 export default function Page() {
     const stripe = useStripe();
     const [message, setMessage] = React.useState(null);
-    const router = useRouter();
+    const searchParams = useSearchParams()
 
     React.useEffect(() => {
         if (!stripe) {
             return;
         }
-
         
-        const clientSecret = router.query.payment_intent_client_secret;
+        const clientSecret = searchParams.get('payment_intent_client_secret');
 
         if (!clientSecret) {
             return;
