@@ -1,19 +1,19 @@
 import PricingGrid from "@/components/PricingGrid";
 import { useAuthContext } from "@/contexts/AuthContext";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 
-export default function ChoosePlan({ onNext }) {
-
-    const { updateUserData } = useAuthContext()
+export default function ChoosePlan({ onSelect, onPrevious }) {
 
     const handleSelectPlan = async (plan) => {
-        await updateUserData({ plan })
-        onNext()
+        onSelect(plan)
     }
 
     return <Box>
         <Flex my={20} justify={'center'}>
             <PricingGrid onSelect={handleSelectPlan} />
+        </Flex>
+        <Flex justify="space-between">
+            <Button colorScheme={'brand'} onClick={onPrevious}>Back</Button>
         </Flex>
     </Box>
 }

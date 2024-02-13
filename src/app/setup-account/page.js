@@ -1,10 +1,11 @@
 'use client'
 import RootLayout from "@/layouts/RootLayout";
-import { Box, Stack, Step, StepDescription, StepIcon, StepIndicator, StepNumber, StepSeparator, StepStatus, StepTitle, Stepper, Text, useSteps } from "@chakra-ui/react";
-import React from "react";
+import { Box, Stack, Step, StepDescription, StepIcon, StepIndicator, StepNumber, StepSeparator, StepStatus, StepTitle, Stepper, useSteps } from "@chakra-ui/react";
+import React, { useState } from "react";
 import PersonalInfo from "./components/PersonalInfo";
 import ChoosePlan from "./components/ChoosePlan";
 import Payment from "./components/Payment";
+import { PRICING } from "@/utils/constants";
 
 const steps = [
     { title: 'Personal Information' },
@@ -14,11 +15,20 @@ const steps = [
 
 export default function Page() {
 
-    const { activeStep, goToNext } = useSteps({
+    const [selectedPlan, setSelectedPlan] = useState(PRICING.basic.key)
+
+    const { activeStep, goToNext, goToPrevious } = useSteps({
         index: 1,
         count: steps.length,
     })
 
+    const handleSelectPlan = (plan) => {
+        setSelectedPlan(plan)
+        goToNext()
+    }
+
+    const key = PRICING[selectedPlan]?.key
+    const amount = PRICING[selectedPlan]?.price
 
     return <RootLayout>
         <Box height={"100vh"} pt={[10, 10, 10, 20]} px={[10, 10, 10, 40]} >
@@ -43,9 +53,9 @@ export default function Page() {
                         </Step>
                     ))}
                 </Stepper>
-                {activeStep === 1 && <PersonalInfo onNext={goToNext} />}
-                {activeStep === 2 && <ChoosePlan onNext={goToNext} />}
-                {activeStep === 3 && <Payment />}
+                {activeStep === 1 && <PersonalInfo onNext={goToNext} onPrevious={goToPrevious} />}
+                {activeStep === 2 && <ChoosePlan onSelect={handleSelectPlan} onPrevious={goToPrevious} />}
+                {activeStep === 3 && <Payment id={key} amount={amount} onPrevious={goToPrevious} />}
                 
             </Stack>
         </Box>

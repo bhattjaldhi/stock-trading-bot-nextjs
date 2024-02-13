@@ -1,11 +1,10 @@
 import { useAuthContext } from "@/contexts/AuthContext";
 import { COLLECTIONS, db } from "@/firebase/firebaseConfig";
 import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Grid, GridItem, Input, Stack } from "@chakra-ui/react";
-import { updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 
-export default function PersonalInfo({ onNext }) {
+export default function PersonalInfo({ onNext, onPrevious }) {
 
     const { user , updateUserData} = useAuthContext()
   
@@ -88,7 +87,8 @@ export default function PersonalInfo({ onNext }) {
 
                 </Stack>
             </Flex>
-            <Flex justify="flex-end">
+            <Flex justify="space-between">
+                <Button colorScheme={'brand'} onClick={onPrevious}>Back</Button>
                 <Button colorScheme={'brand'} type="submit" isLoading={isSubmitting}>Next</Button>
             </Flex>
         </form>
