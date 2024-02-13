@@ -2,15 +2,19 @@
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 export default function Layout({ children }) {
+    const [clientSecret, setClientSecret] = useState(null);
 
-    const searchParams = useSearchParams()
-
-    const clientSecret = searchParams.get('payment_intent_client_secret');
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const secret = urlParams.get("payment_intent_client_secret");
+        setClientSecret(secret);
+    }, []);
 
     const appearance = {
         theme: 'stripe',
@@ -20,9 +24,13 @@ export default function Layout({ children }) {
         appearance,
     };
 
-    return <>{clientSecret && (
-        <Elements options={options} stripe={stripePromise}>
-            {children}
-        </Elements>
-    )}</>
+    return (
+        <>
+            {clientSecret && (
+                <Elements options={options} stripe={stripePromise}>
+                    {children}
+                </Elements>
+            )}
+        </>
+    );
 }
