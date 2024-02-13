@@ -23,7 +23,9 @@ export default function Page() {
                     <Image src={'/assets/icons/pricing_icon_2.svg'} layout="responsive" height={200} width={200} objectFit="cover" alt="pricing_icon_2" />
                 </Box>
             </Box>
-            <PricingGrid />
+            <Box my={[20, 20, 40]}>
+                <PricingGrid />
+            </Box>
         </Box>
     </RootLayout>
 }

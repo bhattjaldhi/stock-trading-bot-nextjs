@@ -1,9 +1,9 @@
 
-import firebaseApp from '../../firebaseConfig'
-import { createUserWithEmailAndPassword, getAuth, sendEmailVerification } from "firebase/auth";
+import firebaseApp, { COLLECTIONS, db } from '@/firebase/firebaseConfig'
+import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
+import { doc, setDoc } from 'firebase/firestore';
 
 const auth = getAuth(firebaseApp);
-
 
 export default async function signUp(email, password) {
     let result = null,
@@ -11,7 +11,17 @@ export default async function signUp(email, password) {
     try {
         result = await createUserWithEmailAndPassword(auth, email, password);
         if (result.user != null){
-            await sendEmailVerification(result.user);
+            const user = {
+                uid: result.user.uid,
+                email: result.user.email,
+                metadata: {
+                    creationTime: new Date(result.user.metadata.creationTime),
+                    lastSignInTime: new Date(result.user.metadata.lastSignInTime),
+                }
+            }
+
+            // await sendEmailVerification(result.user);
+            await setDoc(doc(db, COLLECTIONS.USERS, result.user.uid), user);
           }
     } catch (e) {
         error = e;

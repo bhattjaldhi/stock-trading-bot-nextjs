@@ -44,7 +44,7 @@ export default function Page() {
                     ))}
                 </Stepper>
                 {activeStep === 1 && <PersonalInfo onNext={goToNext} />}
-                {activeStep === 2 && <ChoosePlan onSubmit={goToNext} />}
+                {activeStep === 2 && <ChoosePlan onNext={goToNext} />}
                 {activeStep === 3 && <Payment />}
                 
             </Stack>

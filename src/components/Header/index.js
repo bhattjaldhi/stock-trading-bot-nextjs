@@ -3,9 +3,12 @@ import { Box, Heading, Flex, Link, Button, Drawer, DrawerOverlay, DrawerContent,
 import Image from "next/image";
 import NextLink from "next/link";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import { useAuthContext } from "@/contexts/AuthContext";
 
 const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const { user } = useAuthContext()
 
   return (
     <Box bg="white" p={4} color="black" boxShadow="md">
@@ -35,7 +38,7 @@ const Header = () => {
             <Link mr={4}>Contact</Link>
             <Link mr={4}>Privacy</Link>
             <Link mr={4}>Terms</Link>
-            <NextLink href="/login">
+            {!user ? <NextLink href="/login">
               <Button
                 colorScheme="whiteAlpha"
                 bg="black"
@@ -50,7 +53,23 @@ const Header = () => {
               >
                 Login
               </Button>
-            </NextLink>
+            </NextLink> :
+              <NextLink href="/user/dashboard">
+                <Button
+                  colorScheme="whiteAlpha"
+                  bg="black"
+                  color="white"
+                  borderRadius={20}
+                  _hover={{
+                    bg: "white",
+                    color: "black",
+                    border: "1px solid black",
+                  }}
+                  boxShadow="md"
+                >
+                  Dashboard
+                </Button>
+              </NextLink>}
           </Flex>
         </Flex>
       </Flex>
