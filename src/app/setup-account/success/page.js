@@ -3,20 +3,22 @@
 import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { useStripe } from "@stripe/react-stripe-js";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
+
 
 export default function Page() {
     const stripe = useStripe();
     const [message, setMessage] = React.useState(null);
+    const router = useRouter();
 
     React.useEffect(() => {
         if (!stripe) {
             return;
         }
 
-        const clientSecret = new URLSearchParams(window.location.search).get(
-            "payment_intent_client_secret"
-        );
+        
+        const clientSecret = router.query.payment_intent_client_secret;
 
         if (!clientSecret) {
             return;
@@ -41,7 +43,7 @@ export default function Page() {
     }, [stripe]);
 
     return <Box maxW="600px" mx="auto" mt={20} textAlign="center">
-        <Heading mb={4}>Payment Successful</Heading>
+        <Heading mb={4}>{message}</Heading>
         <Text mb={8}>
             Thank you for your payment. Your transaction has been successfully
             processed.
