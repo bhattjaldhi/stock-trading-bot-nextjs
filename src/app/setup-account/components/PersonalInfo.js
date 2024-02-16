@@ -1,13 +1,14 @@
 import { useAuthContext } from "@/contexts/AuthContext";
 import { COLLECTIONS, db } from "@/firebase/firebaseConfig";
 import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Grid, GridItem, Input, Stack } from "@chakra-ui/react";
+import { updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 
 export default function PersonalInfo({ onNext, onPrevious }) {
 
-    const { user , updateUserData} = useAuthContext()
-  
+    const { user, updateUserData } = useAuthContext()
+
     const {
         handleSubmit,
         register,
@@ -16,11 +17,13 @@ export default function PersonalInfo({ onNext, onPrevious }) {
 
 
     const onSubmit = async (values) => {
+        const displayName = `${values.firstName} ${values.lastName}`
         return new Promise(async (resolve, reject) => {
             try {
                 const ref = doc(db, COLLECTIONS.USERS, user.uid);
                 await setDoc(ref, values, { merge: true });
-                await updateUserData({displayName: `${values.firstName} ${values.lastName}`})
+                await updateProfile(user, { displayName })
+                await updateUserData({ displayName })
                 resolve()
                 onNext()
             } catch (error) {

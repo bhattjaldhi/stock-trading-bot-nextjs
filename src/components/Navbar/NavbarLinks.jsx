@@ -25,6 +25,8 @@ import { MdInfoOutline, MdNotificationsNone } from 'react-icons/md';
 import { getAuth, signOut } from "firebase/auth";
 import routes from '@/routes';
 import { useRouter } from 'next/navigation';
+import { useAuthContext } from '@/contexts/AuthContext';
+import { displayInitials } from '@/utils/helper';
 
 export default function NavBarLinks(props) {
   const { secondary } = props;
@@ -43,6 +45,7 @@ export default function NavBarLinks(props) {
   );
   const borderButton = useColorModeValue('secondaryGray.500', 'whiteAlpha.200');
 
+  const {user, metadata} = useAuthContext()
   const { replace } = useRouter()
 
   const handleLogout = () => {
@@ -224,7 +227,7 @@ export default function NavBarLinks(props) {
           />
           <Center top={0} left={0} position={'absolute'} w={'100%'} h={'100%'}>
             <Text fontSize={'xs'} fontWeight="bold" color={'white'}>
-              AP
+              {displayInitials(user.displayName)}
             </Text>
           </Center>
         </MenuButton>
@@ -248,7 +251,7 @@ export default function NavBarLinks(props) {
               fontWeight="700"
               color={textColor}
             >
-              👋&nbsp; Hey, Adela
+              👋&nbsp; Hey, {metadata.firstName}
             </Text>
           </Flex>
           <Flex flexDirection="column" p="10px">

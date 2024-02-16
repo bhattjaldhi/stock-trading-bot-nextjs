@@ -6,6 +6,7 @@ import PersonalInfo from "./components/PersonalInfo";
 import ChoosePlan from "./components/ChoosePlan";
 import Payment from "./components/Payment";
 import { PRICING } from "@/utils/constants";
+import { useRouter } from "next/navigation";
 
 const steps = [
     { title: 'Personal Information' },
@@ -17,6 +18,7 @@ export default function Page() {
 
     const [selectedPlan, setSelectedPlan] = useState(PRICING.basic.key)
 
+    const {replace} = useRouter()
     const { activeStep, goToNext, goToPrevious } = useSteps({
         index: 1,
         count: steps.length,
@@ -24,7 +26,7 @@ export default function Page() {
 
     const handleSelectPlan = (plan) => {
         setSelectedPlan(plan)
-        goToNext()
+        replace('/user/dashboard')
     }
 
     const key = PRICING[selectedPlan]?.key

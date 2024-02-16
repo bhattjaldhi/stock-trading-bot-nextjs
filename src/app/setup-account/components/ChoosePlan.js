@@ -1,5 +1,4 @@
 import PricingGrid from "@/components/PricingGrid";
-import { useAuthContext } from "@/contexts/AuthContext";
 import { Box, Button, Flex } from "@chakra-ui/react";
 
 export default function ChoosePlan({ onSelect, onPrevious }) {

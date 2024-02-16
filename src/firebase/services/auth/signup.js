@@ -1,6 +1,6 @@
 
 import firebaseApp, { COLLECTIONS, db } from '@/firebase/firebaseConfig'
-import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { doc, setDoc } from 'firebase/firestore';
 
 const auth = getAuth(firebaseApp);
