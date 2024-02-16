@@ -18,7 +18,7 @@ export default function Page() {
 
     const [selectedPlan, setSelectedPlan] = useState(PRICING.basic.key)
 
-    const {replace} = useRouter()
+    const { replace } = useRouter()
     const { activeStep, goToNext, goToPrevious } = useSteps({
         index: 1,
         count: steps.length,
@@ -26,41 +26,38 @@ export default function Page() {
 
     const handleSelectPlan = (plan) => {
         setSelectedPlan(plan)
-        replace('/user/dashboard')
+        if (plan !== PRICING.basic.key) {
+            goToNext()
+        } else {
+            replace('/user/dashboard')
+        }
     }
 
-    const key = PRICING[selectedPlan]?.key
-    const amount = PRICING[selectedPlan]?.price
+    return <Box height={"100vh"} pt={[10, 10, 10, 20]} px={[10, 10, 10, 40]} >
+        <Stack>
+            <Stepper size={['xs', 'sm', 'md', 'lg']} index={activeStep} >
+                {steps.map((step, index) => (
+                    <Step key={index}>
+                        <StepIndicator>
+                            <StepStatus
+                                complete={<StepIcon />}
+                                incomplete={<StepNumber />}
+                                active={<StepNumber />}
+                            />
+                        </StepIndicator>
 
-    return <RootLayout>
-        <Box height={"100vh"} pt={[10, 10, 10, 20]} px={[10, 10, 10, 40]} >
-            <Stack>
-                <Stepper size={['xs', 'sm', 'md', 'lg']} index={activeStep} >
-                    {steps.map((step, index) => (
-                        <Step key={index}>
-                            <StepIndicator>
-                                <StepStatus
-                                    complete={<StepIcon />}
-                                    incomplete={<StepNumber />}
-                                    active={<StepNumber />}
-                                />
-                            </StepIndicator>
+                        <Box flexShrink='0'>
+                            <StepTitle>{step.title}</StepTitle>
+                            <StepDescription>{step.description}</StepDescription>
+                        </Box>
 
-                            <Box flexShrink='0'>
-                                <StepTitle>{step.title}</StepTitle>
-                                <StepDescription>{step.description}</StepDescription>
-                            </Box>
-
-                            <StepSeparator />
-                        </Step>
-                    ))}
-                </Stepper>
-                {activeStep === 1 && <PersonalInfo onNext={goToNext} onPrevious={goToPrevious} />}
-                {activeStep === 2 && <ChoosePlan onSelect={handleSelectPlan} onPrevious={goToPrevious} />}
-                {activeStep === 3 && <Payment id={key} amount={amount} onPrevious={goToPrevious} />}
-                
-            </Stack>
-        </Box>
-    </RootLayout>
-
+                        <StepSeparator />
+                    </Step>
+                ))}
+            </Stepper>
+            {activeStep === 1 && <PersonalInfo onNext={goToNext} onPrevious={goToPrevious} />}
+            {activeStep === 2 && <ChoosePlan onSelect={handleSelectPlan} onPrevious={goToPrevious} />}
+            {activeStep === 3 && <Payment plan={selectedPlan} onPrevious={goToPrevious} />}
+        </Stack>
+    </Box>
 }

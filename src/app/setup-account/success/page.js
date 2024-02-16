@@ -1,45 +1,40 @@
 'use client'
 
+import { updateUserData } from "@/contexts/AuthContext";
+import { retrieveSession } from "@/services/stripe/session";
 import { Box, Button, Heading, Text } from "@chakra-ui/react";
-import { useStripe } from "@stripe/react-stripe-js";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 
 
 export default function Page() {
-    const stripe = useStripe();
     const [message, setMessage] = React.useState(null);
     const searchParams = useSearchParams()
 
+    const handlePaymentSuccess = async (metadata) => {
+        await updateUserData({ plan: metadata.plan })
+    }
+
     React.useEffect(() => {
-        if (!stripe) {
-            return;
-        }
-        
-        const clientSecret = searchParams.get('payment_intent_client_secret');
+        const clientSession = searchParams.get('session');
 
-        if (!clientSecret) {
+        if (!clientSession) {
             return;
         }
 
-        stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-            switch (paymentIntent.status) {
-                case "succeeded":
-                    setMessage("Payment succeeded!");
-                    break;
-                case "processing":
-                    setMessage("Your payment is processing.");
-                    break;
-                case "requires_payment_method":
-                    setMessage("Your payment was not successful, please try again.");
-                    break;
-                default:
-                    setMessage("Something went wrong.");
-                    break;
-            }
-        });
-    }, [stripe]);
+        const fetchData = async () => {
+
+            retrieveSession({ id: clientSession }).then(({ session }) => {
+
+                if (session.status === "complete") {
+                    setMessage("Payment succeeded!")
+                    handlePaymentSuccess(session.metadata)
+                }
+            })
+        }
+        fetchData()
+    }, []);
 
     return <Box maxW="600px" mx="auto" mt={20} textAlign="center">
         <Heading mb={4}>{message}</Heading>
@@ -48,7 +43,7 @@ export default function Page() {
             processed.
         </Text>
         <Link href="/user/dashboard">
-            <Button colorScheme="blue" >
+            <Button colorScheme="brand" >
                 Go to Dashboard
             </Button>
         </Link>

@@ -227,7 +227,7 @@ export default function NavBarLinks(props) {
           />
           <Center top={0} left={0} position={'absolute'} w={'100%'} h={'100%'}>
             <Text fontSize={'xs'} fontWeight="bold" color={'white'}>
-              {displayInitials(user.displayName)}
+              {displayInitials(user?.displayName)}
             </Text>
           </Center>
         </MenuButton>
@@ -251,7 +251,7 @@ export default function NavBarLinks(props) {
               fontWeight="700"
               color={textColor}
             >
-              👋&nbsp; Hey, {metadata.firstName}
+              👋&nbsp; Hey, {metadata?.firstName}
             </Text>
           </Flex>
           <Flex flexDirection="column" p="10px">

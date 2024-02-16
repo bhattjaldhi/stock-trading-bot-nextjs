@@ -1,4 +1,4 @@
-import { Flex, Box, Table, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue, Button, Menu, MenuButton, MenuList, MenuItem, IconButton } from '@chakra-ui/react';
+import { Flex, Box, Table, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue, Button, Menu, MenuButton, MenuList, MenuItem, IconButton, Tooltip } from '@chakra-ui/react';
 import * as React from 'react';
 
 import {
@@ -14,12 +14,13 @@ import Card from '@/components/card/Card';
 import Link from 'next/link';
 import moment from 'moment';
 import { HamburgerIcon } from '@chakra-ui/icons';
+import { PRICING } from '@/utils/constants';
 
 const columnHelper = createColumnHelper();
 
 // const columns = columnsDataCheck;
 export default function BotsTable(props) {
-	const { tableData, onDelete } = props;
+	const { user, tableData, onDelete } = props;
 	const [sorting, setSorting] = React.useState([]);
 	const textColor = useColorModeValue('secondaryGray.900', 'white');
 	const borderColor = useColorModeValue('gray.200', 'whiteAlpha.100');
@@ -119,7 +120,7 @@ export default function BotsTable(props) {
 					<MenuList>
 						<MenuItem>Edit</MenuItem>
 						<MenuItem onClick={() => {
-							info.table.options.meta.removeRow(info.row.index); 
+							info.table.options.meta.removeRow(info.row.index);
 						}}>Delete</MenuItem>
 					</MenuList>
 				</Menu>
@@ -139,12 +140,28 @@ export default function BotsTable(props) {
 		meta: {
 			removeRow: (rowIndex) => {
 				const setFilterFunc = (old) =>
-				old.filter((_row, index) => index !== rowIndex);
-			  setData(setFilterFunc);
-			  onDelete(rowIndex)
+					old.filter((_row, index) => index !== rowIndex);
+				setData(setFilterFunc);
+				onDelete(rowIndex)
 			}
 		}
 	});
+
+	const rows = table.getRowModel().rows.length
+
+	const isCreateButtonDisabled = React.useMemo(() => {
+		switch (user?.plan) {
+			case PRICING.pro.key:
+				return rows < 3 ? false : true
+			case PRICING.max.key:
+				return rows < 5 ? false : true
+			case PRICING.ultra.key:
+				return false
+			default:
+				return rows < 1 ? false : true
+		}
+	}, [user, tableData])
+
 
 	return (
 		<Card flexDirection='column' w='100%' px='0px' overflowX={{ sm: 'scroll', lg: 'hidden' }}>
@@ -153,7 +170,9 @@ export default function BotsTable(props) {
 					AI Bots
 				</Text>
 				<Link href="/user/bots/create">
-					<Button colorScheme={'brand'} size={'sm'}>+ Create Bot</Button>
+					<Tooltip hasArrow label='Maximum number of bots reached' bg='brand.600' placement='top' borderRadius={5} isDisabled={!isCreateButtonDisabled}>
+						<Button colorScheme={'brand'} size={'sm'} isDisabled={isCreateButtonDisabled}>+ Create Bot</Button>
+					</Tooltip>
 				</Link>
 			</Flex>
 			<Box>

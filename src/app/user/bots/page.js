@@ -1,12 +1,14 @@
 'use client';
 import { Box, SimpleGrid } from '@chakra-ui/react';
-import ColumnsTable from '@/views/user/datatables/components/BotsTable';
+import BotsTable from '@/views/user/datatables/components/BotsTable';
 import React, { useEffect, useState } from 'react';
 import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { COLLECTIONS, db } from '@/firebase/firebaseConfig';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 export default function DataTables() {
   const [tableData, setTableData] = useState()
+  const { metadata } = useAuthContext()
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -15,7 +17,6 @@ export default function DataTables() {
 
         const data = []
         docSnap.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
           data.push({ id: doc.id, ...doc.data() })
         });
 
@@ -39,7 +40,7 @@ export default function DataTables() {
         columns={{ sm: 1, md: 1 }}
         spacing={{ base: '20px', xl: '20px' }}
       >
-        {tableData && <ColumnsTable tableData={tableData} onDelete={handleOnDelete} />}
+        {tableData && <BotsTable user={metadata}  tableData={tableData} onDelete={handleOnDelete} />}
       </SimpleGrid>
     </Box>
   );
