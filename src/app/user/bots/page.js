@@ -2,18 +2,24 @@
 import { Box, SimpleGrid } from '@chakra-ui/react';
 import BotsTable from '@/views/user/datatables/components/BotsTable';
 import React, { useEffect, useState } from 'react';
-import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore";
 import { COLLECTIONS, db } from '@/firebase/firebaseConfig';
 import { useAuthContext } from '@/contexts/AuthContext';
 
 export default function DataTables() {
   const [tableData, setTableData] = useState()
-  const { metadata } = useAuthContext()
+  const { user, metadata } = useAuthContext()
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const docRef = collection(db, COLLECTIONS.BOTS);
-        const docSnap = await getDocs(docRef);
+        // Reference to the bots collection
+        const botsCollectionRef = collection(db, COLLECTIONS.BOTS);
+
+        // Query to fetch data for the specified user ID
+        const q = query(botsCollectionRef, where("userId", "==", user.uid));
+
+        const docSnap = await getDocs(q);
 
         const data = []
         docSnap.forEach((doc) => {
@@ -40,7 +46,7 @@ export default function DataTables() {
         columns={{ sm: 1, md: 1 }}
         spacing={{ base: '20px', xl: '20px' }}
       >
-        {tableData && <BotsTable user={metadata}  tableData={tableData} onDelete={handleOnDelete} />}
+        {tableData && <BotsTable user={metadata} tableData={tableData} onDelete={handleOnDelete} />}
       </SimpleGrid>
     </Box>
   );

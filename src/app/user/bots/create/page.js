@@ -6,9 +6,11 @@ import CalendarInput from '@/components/CalendarInput';
 import { collection, addDoc } from "firebase/firestore";
 import { COLLECTIONS, db } from '@/firebase/firebaseConfig';
 import { useRouter } from 'next/navigation';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 export default function Create() {
 
+  const { user } = useAuthContext()
   const { replace } = useRouter()
   const {
     handleSubmit,
@@ -18,7 +20,7 @@ export default function Create() {
   } = useForm()
 
   const onSubmit = async (values) => {
-    await addDoc(collection(db, COLLECTIONS.BOTS), values);
+    await addDoc(collection(db, COLLECTIONS.BOTS), { ...values, userId: user.uid });
     setTimeout(() => {
       replace('/user/bots')
     }, 1000)

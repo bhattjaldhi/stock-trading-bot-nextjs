@@ -18,9 +18,11 @@ const Header = () => {
           <Box as="span" fontSize="2xl" fontWeight="bold" marginRight="2">
             <Image src="/assets/icons/logo.svg" height={20} width={20} alt="logo" />
           </Box>
-          <Heading as="h1" size="md">
-            Br@in
-          </Heading>
+          <NextLink href="/">
+            <Heading as="h1" size="md">
+              Br@in
+            </Heading>
+          </NextLink>
         </Flex>
         <Flex align="center">
           <IconButton

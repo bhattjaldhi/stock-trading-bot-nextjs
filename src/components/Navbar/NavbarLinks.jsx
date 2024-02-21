@@ -227,7 +227,7 @@ export default function NavBarLinks(props) {
           />
           <Center top={0} left={0} position={'absolute'} w={'100%'} h={'100%'}>
             <Text fontSize={'xs'} fontWeight="bold" color={'white'}>
-              {displayInitials(user?.displayName)}
+              {user?.displayName && displayInitials(user?.displayName)}
             </Text>
           </Center>
         </MenuButton>
