@@ -7,11 +7,12 @@ import { Avatar, Box, Grid } from '@chakra-ui/react';
 import Banner from '@/views/user/profile/components/Banner';
 import Storage from '@/views/user/profile/components/Storage';
 import { useAuthContext } from '@/contexts/AuthContext';
+import { PRICING } from '@/utils/constants';
 
 
 export default function ProfileOverview() {
 
-    const {user} = useAuthContext()
+    const {user, metadata} = useAuthContext()
 
   return (
     <Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
@@ -38,8 +39,7 @@ export default function ProfileOverview() {
         />
         <Storage
           gridArea={{ base: '2 / 1 / 3 / 2', lg: '1 / 2 / 2 / 3' }}
-          used={25.6}
-          total={50}
+          plan={metadata?.plan}
         />
       </Grid>
      

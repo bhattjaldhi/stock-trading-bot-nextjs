@@ -30,7 +30,7 @@ export default function Banner (props) {
         h='131px'
         w='100%'
       />
-      <NextAvatar
+      {/* <NextAvatar
         mx='auto'
         src={Avatar}
         h='87px'
@@ -38,7 +38,7 @@ export default function Banner (props) {
         mt='-43px'
         border='4px solid'
         borderColor={borderColor}
-      />
+      /> */}
       <Text color={textColorPrimary} fontWeight='bold' fontSize='xl' mt='10px'>
         {name}
       </Text>

@@ -3,13 +3,13 @@ import { Box, Flex, Icon, Progress, Text, useColorModeValue } from '@chakra-ui/r
 // Custom components
 import Card from '@/components/card/Card';
 import IconBox from '@/components/Icons/IconBox';
-import Menu from '@/components/menu/MainMenu';
 import React from 'react';
 // Assets
 import { MdOutlineCloudDone } from 'react-icons/md';
+import { PRICING } from '@/utils/constants';
 
 export default function Banner(props) {
-	const { used, total } = props;
+	const { plan } = props;
 	// Chakra Color Mode
 	const textColorPrimary = useColorModeValue('secondaryGray.900', 'white');
 	const brandColor = useColorModeValue('brand.500', 'white');
@@ -17,9 +17,6 @@ export default function Banner(props) {
 	const box = useColorModeValue('secondaryGray.300', 'whiteAlpha.100');
 	return (
 		<Card mb={{ base: '0px', lg: '20px' }} alignItems='center'>
-			<Flex w='100%'>
-				<Menu ms='auto' />
-			</Flex>
 			<IconBox
 				mx='auto'
 				h='100px'
@@ -27,11 +24,14 @@ export default function Banner(props) {
 				icon={<Icon as={MdOutlineCloudDone} color={brandColor} h='46px' w='46px' />}
 				bg={box}
 			/>
-			<Text color={textColorPrimary} fontWeight='bold' fontSize='2xl' mt='10px'>
+			<Text color={textColorPrimary} fontWeight='bold' fontSize='lg' mt='10px'>
 				Current plan
 			</Text>
+			<Text color={textColorSecondary} fontWeight='bold' fontSize={'2xl'}>
+				{PRICING[plan]?.name}
+			</Text>
 			<Text color={textColorSecondary} fontSize='md' maxW={{ base: '100%', xl: '80%', '3xl': '60%' }} mx='auto'>
-				Supervise your drive space in the easiest way
+				CAD {PRICING[plan]?.price} / Month
 			</Text>
 			<Box w='100%' mt='auto'>
 				<Flex w='100%' justify='space-between' mb='10px'>
