@@ -22,6 +22,7 @@ export const db = getFirestore(app);
 export const COLLECTIONS = {
   USERS: 'users',
   BOTS: 'bots',
+  ASSETS: 'asset',
 }
 
 export default app

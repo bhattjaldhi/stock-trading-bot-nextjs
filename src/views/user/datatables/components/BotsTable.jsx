@@ -20,7 +20,7 @@ const columnHelper = createColumnHelper();
 
 // const columns = columnsDataCheck;
 export default function BotsTable(props) {
-	const { user, tableData, onDelete } = props;
+	const { user, tableData, onDelete, onRunSimulation } = props;
 	const [sorting, setSorting] = React.useState([]);
 	const textColor = useColorModeValue('secondaryGray.900', 'white');
 	const borderColor = useColorModeValue('gray.200', 'whiteAlpha.100');
@@ -118,7 +118,8 @@ export default function BotsTable(props) {
 						variant='outline'
 					/>
 					<MenuList>
-						<MenuItem>Edit</MenuItem>
+						<MenuItem><Link href={`/user/bots/${info.row.original.symbol}/assets`}>View Assets</Link></MenuItem>
+						<MenuItem onClick={() => onRunSimulation(info.row.original)}>Run Simulation</MenuItem>
 						<MenuItem onClick={() => {
 							info.table.options.meta.removeRow(info.row.index);
 						}}>Delete</MenuItem>

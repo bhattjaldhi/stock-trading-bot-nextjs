@@ -1,7 +1,6 @@
 // Chakra imports
 import { Box, Button, Flex, Icon, Text, useColorModeValue } from '@chakra-ui/react';
 // Custom components
-import Card from '@/components/card/Card';
 import { useEffect, useState } from 'react';
 import { MdBarChart, MdOutlineCalendarToday } from 'react-icons/md';
 // Assets
@@ -21,7 +20,7 @@ export default function StockDailyLineChart(props) {
 	const bgHover = useColorModeValue({ bg: 'secondaryGray.400' }, { bg: 'whiteAlpha.50' });
 	const bgFocus = useColorModeValue({ bg: 'secondaryGray.300' }, { bg: 'whiteAlpha.100' });
 
-	const [ mounted, setMounted ] = useState(false);
+	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => {
 		const timeout = setTimeout(() => {
@@ -33,7 +32,7 @@ export default function StockDailyLineChart(props) {
 	}, []);
 
 	return (
-		<Card justifyContent='center' alignItems='center' flexDirection='column' w='100%' mb='0px' {...rest}>
+		<Box width={'100%'}>
 			<Flex justify='space-between' ps='0px' pe='20px' pt='5px' w='100%'>
 				<Flex align='center' w='100%'>
 					<Button bg={boxBg} fontSize='sm' fontWeight='500' color={textColorSecondary} borderRadius='7px'>
@@ -62,6 +61,6 @@ export default function StockDailyLineChart(props) {
 					<AreaChart chartData={data} chartOptions={lineChartOptionsDailyStocks} />
 				</Box>
 			</Flex>
-		</Card>
+		</Box>
 	);
 }

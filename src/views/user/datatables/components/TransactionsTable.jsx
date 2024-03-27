@@ -17,7 +17,7 @@ import Link from 'next/link';
 const columnHelper = createColumnHelper();
 
 // const columns = columnsDataCheck;
-export default function StocksTable(props) {
+export default function TransactionsTable(props) {
 	const { tableData } = props;
 	const [sorting, setSorting] = React.useState([]);
 	const textColor = useColorModeValue('secondaryGray.900', 'white');
@@ -43,15 +43,15 @@ export default function StocksTable(props) {
 				</Flex>
 			)
 		}),
-		columnHelper.accessor('exchange', {
-			id: 'exchange',
+		columnHelper.accessor('price', {
+			id: 'price',
 			header: () => (
 				<Text
 					justifyContent='space-between'
 					align='center'
 					fontSize={{ sm: '10px', lg: '12px' }}
 					color='gray.400'>
-					Exchange
+					Price
 				</Text>
 			),
 			cell: (info) => (
@@ -60,26 +60,23 @@ export default function StocksTable(props) {
 				</Text>
 			)
 		}),
-
-		columnHelper.accessor('symbol', {
-			id: 'symbol',
+		columnHelper.accessor('date', {
+			id: 'date',
 			header: () => (
 				<Text
 					justifyContent='space-between'
 					align='center'
 					fontSize={{ sm: '10px', lg: '12px' }}
 					color='gray.400'>
-					Action
+					Date
 				</Text>
 			),
 			cell: (info) => (
-				<Link href={'/user/stocks/' + info.getValue()}>
-					<Button colorScheme={'brand'} size={'sm'} fontWeight='700'>
-						View
-					</Button>
-				</Link>
+				<Text color={textColor} fontSize='sm' fontWeight='700'>
+					{info.getValue()}
+				</Text>
 			)
-		})
+		}),
 	];
 	const [data, setData] = React.useState(() => [...defaultData]);
 	const table = useReactTable({
@@ -102,7 +99,7 @@ export default function StocksTable(props) {
 		<Card flexDirection='column' w='100%' px='0px' overflowX={{ sm: 'scroll', lg: 'hidden' }}>
 			<Flex px='25px' mb="8px" justifyContent='space-between' align='center'>
 				<Text color={textColor} fontSize='22px' mb="4px" fontWeight='700' lineHeight='100%'>
-					Stocks Marketplace
+					Transactions
 				</Text>
 			</Flex>
 			<Box>

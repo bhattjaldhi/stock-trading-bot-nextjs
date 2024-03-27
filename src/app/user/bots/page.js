@@ -5,6 +5,9 @@ import React, { useEffect, useState } from 'react';
 import { collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore";
 import { COLLECTIONS, db } from '@/firebase/firebaseConfig';
 import { useAuthContext } from '@/contexts/AuthContext';
+import rest from '@/services/rest';
+import { format } from 'date-fns';
+import moment from 'moment';
 
 export default function DataTables() {
   const [tableData, setTableData] = useState()
@@ -39,6 +42,29 @@ export default function DataTables() {
     let id = tableData[index].id
     await deleteDoc(doc(db, COLLECTIONS.BOTS, id));
   }
+
+  const handleOnRunSimulation = (data) => {
+    rest.simulate({
+      agent_path: 'aapl_ddpg_low',
+      agent_type: 'ddpg',
+      data_path: 'data/trading_set.csv',
+      trade_limit: 100,
+      buy_upper_limit: 200,
+      sell_upper_limit: 2000,
+      initial_amount: data.amount,
+      symbol: data.symbol,
+      start_date: moment('2024-02-28').subtract(2, 'M').format('YYYY-MM-DD'), // Corrected format for moment
+      end_date: moment('2024-02-28').format('YYYY-MM-DD'), // Corrected format for moment
+      user: 'Generic User',
+      resume_session: false,
+      orientation: 'records'
+    }).then(x => {
+      console.log(JSON.parse(x.data.asset_history))
+    }).catch(e => {
+      console.log(e)
+    })
+  }
+
   return (
     <Box pt={{ base: '180px', md: '80px', xl: '80px' }}>
       <SimpleGrid
@@ -46,7 +72,7 @@ export default function DataTables() {
         columns={{ sm: 1, md: 1 }}
         spacing={{ base: '20px', xl: '20px' }}
       >
-        {tableData && <BotsTable user={metadata} tableData={tableData} onDelete={handleOnDelete} />}
+        {tableData && <BotsTable user={metadata} tableData={tableData} onDelete={handleOnDelete} onRunSimulation={handleOnRunSimulation}/>}
       </SimpleGrid>
     </Box>
   );

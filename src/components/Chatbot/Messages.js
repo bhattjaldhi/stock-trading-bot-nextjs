@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, List, ListItem, Text } from '@chakra-ui/react';
+import Markdown from 'react-markdown';
 
 export default function Messages({ messages }) {
   return (
@@ -14,7 +15,7 @@ export default function Messages({ messages }) {
               maxWidth="70%"
               display="inline-block"
             >
-              {message.text}
+              <div dangerouslySetInnerHTML={{ __html: message.text }} />
             </Text>
           </ListItem>
         ))}

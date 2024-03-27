@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Input, Button, Flex } from '@chakra-ui/react';
 import { MdSend } from 'react-icons/md';
 
-export default function Footer() {
+export default function Footer({onSubmit}) {
   const [message, setMessage] = useState('');
 
   const handleMessageChange = (event) => {
@@ -10,7 +10,7 @@ export default function Footer() {
   };
 
   const handleSubmit = () => {
-    console.log('Sending message:', message);
+    onSubmit(message)
     setMessage('');
   };
 

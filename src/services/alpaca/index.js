@@ -1,8 +1,8 @@
 import Alpaca from '@alpacahq/alpaca-trade-api'
 
 const alpaca = new Alpaca({
-    keyId: 'PKVZ7805H0SR5VOZJJVR',
-    secretKey: 'gdP7Ev5ITmQMa7IqWb6KENdSUT4Xrhkz66yU5RuB',
+    keyId: 'PKQDTZOY8W9MLWW81LC6',
+    secretKey: 'lW0OOIcOxXXDhJfkzWBh2RCXbu0OoHkofhgv6V6c',
     paper: true,
 })
 
