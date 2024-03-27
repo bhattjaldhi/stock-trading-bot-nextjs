@@ -20,7 +20,7 @@ const Home = () => {
               Build Wealth Automatically With Br@in
             </Heading>
             <Text fontSize={{ base: 'sm', md: 'md', lg: "lg" }} color="gray.600">
-              Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut dolor sit
+              Empower your investment strategy with cutting-edge AI technology. Our intelligent trading bot leverages machine learning algorithms to make informed decisions in the stock market
             </Text>
           </Box>
         </Box>
@@ -43,7 +43,7 @@ const Home = () => {
         </Box>
         <Box position="relative" width="100%" mt={150} px={['30px', '50px', '200px']} >
           <Heading as="h2" size="xl" textAlign="center">
-            Invest & Grow your cryptocurrency Portfolio
+            Invest & Grow your Stock Portfolio
           </Heading>
           <Grid
             templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']}
@@ -61,10 +61,10 @@ const Home = () => {
                 borderRadius={20}
               >
                 <Heading as="h5" size={"md"}>
-                  More than a typical crypto wallet
+                  More than a typical stock trading
                 </Heading>
                 <Text fontSize="sm" color="gray.600">
-                  Lorem ipsum dolor sit amet consect eturadipiscing eiusmod
+                  Experience a smarter way to invest in stocks. Our AI Stock Trading Bot helps you optimize your portfolio for maximum returns.
                 </Text>
                 <Text fontSize="sm" color="brand.500" mt={3}>
                   Read More
@@ -88,10 +88,10 @@ const Home = () => {
                   <Image src="/assets/images/home_portfolio_2.png" height={300} width={300} style={{ marginBottom: 30 }} alt="portfolio_2" />
                 </Box>
                 <Heading as="h5" size={"md"}>
-                  Grow your business with Binance Pay
+                  Maximize Profits with Automated Trading
                 </Heading>
                 <Text fontSize="sm" color="gray.600">
-                  Lorem ipsum dolor sit amet consectetur adipiscing eiusmod
+                  Let our AI Stock Trading Bot handle your trades automatically. Sit back and watch as it executes trades based on advanced algorithms.
                 </Text>
                 <Text fontSize="sm" color="brand.500" mt={3}>
                   Read More
@@ -109,10 +109,10 @@ const Home = () => {
                 borderRadius={20}
               >
                 <Heading as="h5" size={"md"}>
-                  A crypto wallet from the future
+                  Stay Ahead of the Market Trends
                 </Heading>
                 <Text fontSize="sm" color="gray.600">
-                  Lorem ipsum dolor sit amet consect eturadipiscing eiusmod
+                  Gain insights into market trends and make informed decisions with real-time data analysis provided by our AI Stock Trading Bot.
                 </Text>
                 <Text fontSize="sm" color="brand.500" mt={3}>
                   Read More
@@ -130,7 +130,7 @@ const Home = () => {
 
         <Box position="relative" width="100%" mt={150} px={['30px', '50px', '200px']} py={10}>
           <Heading as="h2" size="xl" textAlign="center">
-            Fully featured to buy, trade and invest in Cryptop
+            Fully featured to buy, trade and invest in AirBot
           </Heading>
           <Grid
             templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']}
@@ -150,10 +150,10 @@ const Home = () => {
                   <Image src="/assets/icons/home_features_1.svg" height={61} width={61} style={{ marginTop: 30 }} alt="feature_1" />
                 </Box>
                 <Heading as="h5" size={"md"} mt={5}>
-                  Real-time trading
+                  Real-time Market Analysis
                 </Heading>
                 <Text fontSize="sm" color="gray.600" mt={5}>
-                  Organically grow the holistic world view of disruptive innovati workplace diversity  empowerment.
+                  Access real-time market data and analysis to identify profitable trading opportunities instantly.
                 </Text>
 
               </Box>
@@ -171,10 +171,10 @@ const Home = () => {
                   <Image src="/assets/icons/home_features_2.svg" height={61} width={61} style={{ marginTop: 30 }} alt="feature_2" />
                 </Box>
                 <Heading as="h5" size={"md"} mt={5}>
-                  Easy to create wallet
+                  Customizable Trading Strategies
                 </Heading>
                 <Text fontSize="sm" color="gray.600" mt={5}>
-                  Organically grow the holistic world view of disruptive innovati workplace diversity  empowerment.
+                  Tailor the AI Stock Trading Bot to your specific investment goals and risk tolerance with customizable trading strategies.
                 </Text>
 
               </Box>
@@ -192,10 +192,10 @@ const Home = () => {
                   <Image src="/assets/icons/home_features_3.svg" height={61} width={61} style={{ marginTop: 30 }} alt="feature_3" />
                 </Box>
                 <Heading as="h5" size={"md"} mt={5}>
-                  Safe & secure
+                  Secure & Reliable Transactions
                 </Heading>
                 <Text fontSize="sm" color="gray.600" mt={5}>
-                  Organically grow the holistic world view of disruptive innovati workplace diversity  empowerment.
+                  Ensure the safety of your investments with secure and reliable transaction processing powered by advanced encryption techniques.
                 </Text>
 
               </Box>
@@ -213,10 +213,10 @@ const Home = () => {
                   <Image src="/assets/icons/home_features_4.svg" height={61} width={61} style={{ marginTop: 30 }} alt="feature_4" />
                 </Box>
                 <Heading as="h5" size={"md"} mt={5}>
-                  Super Fast KYC
+                  24/7 Automated Trading
                 </Heading>
                 <Text fontSize="sm" color="gray.600" mt={5}>
-                  Organically grow the holistic world view of disruptive innovati workplace diversity  empowerment.
+                  Never miss out on trading opportunities. Our AI Stock Trading Bot operates 24/7, executing trades on your behalf even while you sleep.
                 </Text>
 
               </Box>
@@ -234,7 +234,7 @@ const Home = () => {
                   <Image src="/assets/icons/home_features_5.svg" height={61} width={61} style={{ marginTop: 30 }} alt="feature_5" />
                 </Box>
                 <Heading as="h5" size={"md"} mt={5}>
-                  Send & receive anytime
+                  Performance Reports & Analytics
                 </Heading>
                 <Text fontSize="sm" color="gray.600" mt={5}>
                   Organically grow the holistic world view of disruptive innovati workplace diversity  empowerment.
@@ -258,22 +258,23 @@ const Home = () => {
                   Reports & analytics
                 </Heading>
                 <Text fontSize="sm" color="gray.600" mt={5}>
-                  Organically grow the holistic world view of disruptive innovati workplace diversity  empowerment.
+                  Track the performance of your investments with detailed reports and analytics provided by our AI Stock Trading Bot.
                 </Text>
               </Box>
             </GridItem>
           </Grid>
           <Box display={'flex'} mt={6}>
-            <Button
-
-              borderRadius="20px"
-              colorScheme={"brand"}
-              bgGradient={'linear(to-r, brand.500, primary.600)'}
-              px={[2, 4, 6]}
-              py={[2, 3, 4]}
-            >
-              Get Started
-            </Button>
+            <Link href="/login">
+              <Button
+                borderRadius="20px"
+                colorScheme={"brand"}
+                bgGradient={'linear(to-r, brand.500, primary.600)'}
+                px={[2, 4, 6]}
+                py={[2, 3, 4]}
+              >
+                Get Started
+              </Button>
+            </Link>
             <Button borderRadius="20px"
               ml={5}
               px={[2, 4, 6]}
