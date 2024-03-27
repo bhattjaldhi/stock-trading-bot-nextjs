@@ -11,7 +11,7 @@ export default function Brand() {
 	return (
 		<Flex alignItems='center' flexDirection='column'>
 			<Box h="100px" w="100%">
-			<Text my='32px' fontSize={'3xl'} textAlign={'center'}>Br@in</Text>
+			<Text my='32px' fontSize={'3xl'} textAlign={'center'}>AirBot</Text>
 			</Box>
 			<HSeparator mb='20px' />
 		</Flex>

@@ -20,7 +20,7 @@ const Header = () => {
           </Box>
           <NextLink href="/">
             <Heading as="h1" size="md">
-              Br@in
+              AirBot
             </Heading>
           </NextLink>
         </Flex>
@@ -80,7 +80,7 @@ const Header = () => {
       <Drawer placement="right" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay>
           <DrawerContent>
-            <DrawerHeader>Br@in</DrawerHeader>
+            <DrawerHeader>AirBot</DrawerHeader>
             <DrawerBody>
               <Flex direction="column">
                 <Link mb={2} onClick={onClose}>
