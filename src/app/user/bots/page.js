@@ -1,5 +1,5 @@
 'use client';
-import { Box, SimpleGrid } from '@chakra-ui/react';
+import { Box, Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, SimpleGrid, useDisclosure } from '@chakra-ui/react';
 import BotsTable from '@/views/user/datatables/components/BotsTable';
 import React, { useEffect, useState } from 'react';
 import { collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore";
@@ -8,10 +8,13 @@ import { useAuthContext } from '@/contexts/AuthContext';
 import rest from '@/services/rest';
 import { format } from 'date-fns';
 import moment from 'moment';
+import BotAssetHistoryChart from '@/views/user/charts/BotAssetHistoryChart';
 
 export default function DataTables() {
   const [tableData, setTableData] = useState()
   const { user, metadata } = useAuthContext()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [lines, setLines] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,7 +62,12 @@ export default function DataTables() {
       resume_session: false,
       orientation: 'records'
     }).then(x => {
-      console.log(JSON.parse(x.data.asset_history))
+      const barset = [{ name: 'Info', data: [] }];
+      JSON.parse(x.data.asset_history).forEach(x => {
+        barset[0].data.push({ x: moment(x.date) , y: x[`total `] });
+      })
+      setLines(barset)
+      onOpen()
     }).catch(e => {
       console.log(e)
     })
@@ -72,7 +80,23 @@ export default function DataTables() {
         columns={{ sm: 1, md: 1 }}
         spacing={{ base: '20px', xl: '20px' }}
       >
-        {tableData && <BotsTable user={metadata} tableData={tableData} onDelete={handleOnDelete} onRunSimulation={handleOnRunSimulation}/>}
+        {tableData && <BotsTable user={metadata} tableData={tableData} onDelete={handleOnDelete} onRunSimulation={handleOnRunSimulation} />}
+        <Modal isOpen={isOpen} onClose={onClose} size={'xl'}>
+          <ModalOverlay />
+          <ModalContent width={800}>
+            <ModalHeader>Simulation</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <BotAssetHistoryChart data={lines} />
+            </ModalBody>
+
+            <ModalFooter>
+              <Button colorScheme='blue' mr={3} onClick={onClose}>
+                Close
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </SimpleGrid>
     </Box>
   );
