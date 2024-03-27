@@ -28,10 +28,10 @@ export default function Banner(props) {
 				Current plan
 			</Text>
 			<Text color={textColorSecondary} fontWeight='bold' fontSize={'2xl'}>
-				{PRICING[plan]?.name}
+				{plan ? PRICING[plan]?.name : "Free"}
 			</Text>
 			<Text color={textColorSecondary} fontSize='md' maxW={{ base: '100%', xl: '80%', '3xl': '60%' }} mx='auto'>
-				CAD {PRICING[plan]?.price} / Month
+				{plan ? `CAD ${PRICING[plan]?.price} / Month` : `CAD 0 / Month`}
 			</Text>
 			<Box w='100%' mt='auto'>
 				<Flex w='100%' justify='space-between' mb='10px'>
