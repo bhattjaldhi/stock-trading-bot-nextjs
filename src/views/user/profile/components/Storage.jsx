@@ -2,7 +2,7 @@
 import { Box, Flex, Icon, Progress, Text, useColorModeValue } from '@chakra-ui/react';
 // Custom components
 import Card from '@/components/card/Card';
-import IconBox from '@/components/icons/IconBox';
+import IconBox from '@/components/Icons/IconBox';
 import Menu from '@/components/menu/MainMenu';
 import React from 'react';
 // Assets
