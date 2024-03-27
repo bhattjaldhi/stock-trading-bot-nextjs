@@ -16,7 +16,7 @@ export default function Page() {
                         Pricing
                     </Heading>
                     <Text fontSize={{ base: 'sm', md: 'md', lg: "lg" }} color="gray.600">
-                        Free equity investments and flat ₹20 intraday and F&O trades even higher earning rates and our lowest borrowing rates.
+                        Choose the best plan for your trading needs. Enjoy.
                     </Text>
                 </Box>
                 <Box display={['none', 'block', 'block']} position="relative">
