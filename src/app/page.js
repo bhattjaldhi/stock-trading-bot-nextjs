@@ -17,7 +17,7 @@ const Home = () => {
         <Box mt={[100, 150, 200]} mx="auto" width={["90%", "90%", "900px"]} position="relative" px={[4, 8, 12]}>
           <Box textAlign="center">
             <Heading as="h2" size={{ base: 'xl', md: '2xl', lg: "3xl" }} mb={4}>
-              Build Wealth Automatically With Br@in
+              Build Wealth Automatically With AirBot
             </Heading>
             <Text fontSize={{ base: 'sm', md: 'md', lg: "lg" }} color="gray.600">
               Empower your investment strategy with cutting-edge AI technology. Our intelligent trading bot leverages machine learning algorithms to make informed decisions in the stock market
