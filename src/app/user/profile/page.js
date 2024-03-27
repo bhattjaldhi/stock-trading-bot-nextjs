@@ -31,8 +31,8 @@ export default function ProfileOverview() {
         <Banner
           gridArea="1 / 1 / 2 / 2"
           avatar={<Avatar />}
-          name={user.displayName}
-          email={user.email}
+          name={user?.displayName}
+          email={user?.email}
           posts="17"
           followers="9.7k"
           following="274"
