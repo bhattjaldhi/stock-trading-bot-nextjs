@@ -2,7 +2,8 @@ import axios from 'axios'
 import https from 'https'
 
 const instance = axios.create({
-    baseURL: 'http://3.128.172.31',
+   //  baseURL: 'http://3.128.172.31',
+    baseURL: 'http://localhost:3000',
     headers: { Authorization: 'Bearer eyJhbGciOiJIUd2VyIn0.NDFAApMqRBwacpLumnyC_p7IWWmmWEFmXJIVkRoIA-I' },
     httpsAgent: new https.Agent({ rejectUnauthorized: false }) 
 })
