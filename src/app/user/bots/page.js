@@ -10,7 +10,7 @@ import { format } from 'date-fns';
 import moment from 'moment';
 import BotAssetHistoryChart from '@/views/user/charts/BotAssetHistoryChart';
 
-export default function DataTables() {
+export default function Page() {
   const [tableData, setTableData] = useState()
   const { user, metadata } = useAuthContext()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -51,9 +51,9 @@ export default function DataTables() {
       agent_path: 'aapl_ddpg_low',
       agent_type: 'ddpg',
       data_path: 'data/trading_set.csv',
-      trade_limit: 100,
-      buy_upper_limit: 200,
-      sell_upper_limit: 2000,
+      trade_limit: data?.trade_limit ? parseInt(data?.trade_limit) : 10, // number of share you can buy per day
+      buy_upper_limit: data?.buy_limit ? parseInt(data?.buy_limit) : 200,
+      sell_upper_limit: data?.sell_limit ? parseInt(data?.sell_limit) : 200,
       initial_amount: data.amount,
       symbol: data.symbol,
       start_date: moment('2024-02-28').subtract(2, 'M').format('YYYY-MM-DD'), // Corrected format for moment
@@ -81,9 +81,9 @@ export default function DataTables() {
         spacing={{ base: '20px', xl: '20px' }}
       >
         {tableData && <BotsTable user={metadata} tableData={tableData} onDelete={handleOnDelete} onRunSimulation={handleOnRunSimulation} />}
-        <Modal isOpen={isOpen} onClose={onClose} size={'xl'}>
+        <Modal isOpen={isOpen} onClose={onClose} size={'3xl'}>
           <ModalOverlay />
-          <ModalContent width={800}>
+          <ModalContent>
             <ModalHeader>Simulation</ModalHeader>
             <ModalCloseButton />
             <ModalBody>

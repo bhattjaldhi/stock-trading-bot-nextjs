@@ -76,7 +76,7 @@ export default function Page({ params, ...rest }) {
 
                 <Grid flexDirection={"column"} templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)', 'repeat(12, 1fr)']}>
                     <GridItem colSpan={1}>{x?.Images?.length !== 0 &&
-                        <Image src={x.Images[2].url} height={100} width={100} />
+                        <Image src={x.Images[2].url} height={100} width={100} borderRadius={20} />
                     }
                     </GridItem>
                     <GridItem justifyContent='space-between' colSpan={x?.Images?.length !== 0 ? 11 : 12} pl={2}>

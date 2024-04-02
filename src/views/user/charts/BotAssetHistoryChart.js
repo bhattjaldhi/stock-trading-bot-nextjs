@@ -2,10 +2,10 @@
 import { Box, Button, Flex, Icon, Text, useColorModeValue } from '@chakra-ui/react';
 // Custom components
 import { useEffect, useState } from 'react';
-import { MdBarChart, MdOutlineCalendarToday } from 'react-icons/md';
+import { MdBarChart } from 'react-icons/md';
 // Assets
 import { lineChartOptionsAssetHistory } from './options/botAssetHistoryChart';
-import AreaChart from '@/components/charts/AreaChart';
+import LineChart from '@/components/charts/LineChart';
 
 export default function BotAssetHistoryChart(props) {
 	const { data, ...rest } = props;
@@ -54,7 +54,7 @@ export default function BotAssetHistoryChart(props) {
 			</Flex>
 			<Flex w='100%' flexDirection={{ base: 'column', lg: 'row' }}>
 				<Box minH='260px' minW='100%' mt='auto'>
-					<AreaChart chartData={data} chartOptions={lineChartOptionsAssetHistory} />
+					<LineChart chartData={data} chartOptions={lineChartOptionsAssetHistory} />
 				</Box>
 			</Flex>
 		</Box>

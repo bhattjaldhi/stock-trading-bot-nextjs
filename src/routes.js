@@ -27,7 +27,6 @@ const routes= [
         color="inherit"
       />
     ),
-    secondary: true,
   },
   {
     name: 'Manage Bots',

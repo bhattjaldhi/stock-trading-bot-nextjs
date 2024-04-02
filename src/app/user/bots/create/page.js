@@ -13,6 +13,7 @@ export default function Create() {
   const { user } = useAuthContext()
   const { replace } = useRouter()
   const {
+    getValues,
     handleSubmit,
     setValue,
     register,
@@ -25,6 +26,14 @@ export default function Create() {
       replace('/user/bots')
     }, 1000)
   }
+
+  const validateLimits = (value) => {
+    const values = getValues()
+    if (parseFloat(value) > parseFloat(values.amount)) {
+      return "Limit cannot be greater than the amount";
+    }
+    return true;
+  };
 
   return (
     <Box width="100%" maxWidth={"600px"} bg="white" mt={['20px', '50px', '100px']} borderRadius={20} p={10}>
@@ -53,6 +62,41 @@ export default function Create() {
               })} />
             <FormErrorMessage>
               {errors.amount && errors.amount.message}
+            </FormErrorMessage>
+          </FormControl>
+          <FormControl isInvalid={errors.trade_limit} mt={7}>
+            <FormLabel display={"flex"} alignItems={'center'}>Trade limit
+              <Text color={"gray.500"} fontSize={10} ml={1}>(optional)</Text>
+            </FormLabel>
+            <Input type="number" placeholder={'Enter trade limit'}
+              {...register('trade_limit')} />
+
+            <FormErrorMessage>
+              {errors.trade_limit && errors.trade_limit.message}
+            </FormErrorMessage>
+          </FormControl>
+          <FormControl isInvalid={errors.buy_limit} mt={7}>
+            <FormLabel display={"flex"} alignItems={'center'}>Buy upper limit
+              <Text color={"gray.500"} fontSize={10} ml={1}>(optional)</Text>
+            </FormLabel>
+            <Input type="number" placeholder={'Enter buy upper limit'}
+              {...register('buy_limit', {
+                validate: value => validateLimits(value)
+              })} />
+            <FormErrorMessage>
+              {errors.buy_limit && errors.buy_limit.message}
+            </FormErrorMessage>
+          </FormControl>
+          <FormControl isInvalid={errors.sell_limit} mt={7}>
+            <FormLabel display={"flex"} alignItems={'center'}>Sell upper limit
+              <Text color={"gray.500"} fontSize={10} ml={1}>(optional)</Text>
+            </FormLabel>
+            <Input type="sell_limit" placeholder={'Enter sell upper limit'}
+              {...register('sell_limit', {
+                validate: value => validateLimits(value)
+              })} />
+            <FormErrorMessage>
+              {errors.sell_limit && errors.sell_limit.message}
             </FormErrorMessage>
           </FormControl>
           <FormControl isInvalid={errors.date} mt={7}>

@@ -42,14 +42,11 @@ const Header = () => {
             <Link mr={4}>Terms</Link>
             {!user ? <NextLink href="/login">
               <Button
-                colorScheme="whiteAlpha"
-                bg="black"
-                color="white"
+                colorScheme="brand"
                 borderRadius={20}
                 _hover={{
                   bg: "white",
                   color: "black",
-                  border: "1px solid black",
                 }}
                 boxShadow="md"
               >
@@ -58,14 +55,13 @@ const Header = () => {
             </NextLink> :
               <NextLink href="/user/dashboard">
                 <Button
-                  colorScheme="whiteAlpha"
+                  colorScheme="brand"
                   bg="black"
                   color="white"
                   borderRadius={20}
                   _hover={{
                     bg: "white",
                     color: "black",
-                    border: "1px solid black",
                   }}
                   boxShadow="md"
                 >
@@ -103,7 +99,7 @@ const Header = () => {
                 </Link>
                 <NextLink href="/login">
                   <Button
-                    colorScheme="whiteAlpha"
+                    colorScheme="brand"
                     bg="black"
                     color="white"
                     borderRadius={20}

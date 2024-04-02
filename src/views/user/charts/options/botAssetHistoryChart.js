@@ -49,6 +49,12 @@ export const lineChartOptionsAssetHistory = {
           fontWeight: "500",
         },
       },
+      title: {
+        text: 'Timeline',
+        style: {
+          fontSize: '14px',
+        },
+      },
       axisBorder: {
         show: true,
       },
@@ -58,6 +64,12 @@ export const lineChartOptionsAssetHistory = {
     },
     yaxis: {
       show: true,
+      title: {
+        text: 'Total',
+        style: {
+          fontSize: '14px',
+        },
+      },
     },
     legend: {
       show: true,
