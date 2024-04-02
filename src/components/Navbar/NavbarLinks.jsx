@@ -191,7 +191,7 @@ export default function NavBarLinks(props) {
           <Box
             _hover={{ cursor: 'pointer' }}
             color="white"
-            bg="#11047A"
+            bg="brand.500"
             w="40px"
             h="40px"
             borderRadius={'50%'}
