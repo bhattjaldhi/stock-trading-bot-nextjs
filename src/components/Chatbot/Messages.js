@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, List, ListItem, Text } from '@chakra-ui/react';
+import { Box, CircularProgress, List, ListItem, Text } from '@chakra-ui/react';
 import Markdown from 'react-markdown';
 
 export default function Messages({ messages }) {
@@ -7,19 +7,31 @@ export default function Messages({ messages }) {
     <Box p={4} height={"70vh"} overflowY="auto">
       <List spacing={3}>
         {messages?.map((message, index) => (
-          <ListItem key={index} textAlign={message.type === 'user' ? 'right' : 'left'}>
-            <Text
-              bg={message.type === 'user' ? 'brand.100' : 'gray.200'}
-              p={2}
-              borderRadius="md"
-              maxWidth="70%"
-              display="inline-block"
-            >
-              <div dangerouslySetInnerHTML={{ __html: message.text }} />
-            </Text>
-          </ListItem>
+          <>
+            <ListItem key={index} textAlign={message.type === 'user' ? 'right' : 'left'}>
+              <Text
+                bg={message.type === 'user' ? 'brand.100' : 'gray.200'}
+                p={2}
+                borderRadius="md"
+                maxWidth="70%"
+                display="inline-block"
+              >
+                <div dangerouslySetInnerHTML={{ __html: message.text }} />
+              </Text>
+            </ListItem>
+            {message?.loading && <ListItem textAlign={'left'} >
+              <Box as="span"  position="relative" bg={'gray.200'} p={2}
+                borderRadius="md">
+                <Box className="dot" />
+                <Box className="dot" />
+                <Box className="dot" />
+              </Box>
+            </ListItem>}
+          </>
         ))}
+
       </List>
     </Box>
   );
 };
+

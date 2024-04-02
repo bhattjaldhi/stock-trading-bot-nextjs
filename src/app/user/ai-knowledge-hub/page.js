@@ -12,7 +12,7 @@ export default function Page() {
 
     const addMessage = (message) => {
         let userMessage = { text: message, type: 'user' }
-        setMessages([...messages, { text: message, type: 'user' }]);
+        setMessages([...messages, { ...userMessage, loading: true }]);
         setTimeout(() => {
             rest.chat({userMessage: message}).then(x => {
            if(x.status === 200) {

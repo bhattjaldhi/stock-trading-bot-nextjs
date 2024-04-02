@@ -22,6 +22,11 @@ export default function Footer({onSubmit}) {
           onChange={handleMessageChange}
           placeholder="Type your message..."
           mr={2}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              handleSubmit();
+            }
+          }}
         />
         <Button onClick={handleSubmit} colorScheme="brand">
           <MdSend />

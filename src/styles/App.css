@@ -7,3 +7,27 @@ body {
 option {
   color: black;
 }
+
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #000;
+  animation: typing 1s infinite alternate;
+  margin-right: 4px;
+}
+
+@keyframes typing {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
