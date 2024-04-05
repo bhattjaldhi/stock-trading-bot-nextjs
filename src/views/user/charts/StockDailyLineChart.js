@@ -57,7 +57,7 @@ export default function StockDailyLineChart(props) {
 				</Flex>
 			</Flex>
 			<Flex w='100%' flexDirection={{ base: 'column', lg: 'row' }}>
-				<Box minH='260px' minW='100%' mt='auto'>
+				<Box minH='400px' minW='100%' mt='auto'>
 					<AreaChart chartData={data} chartOptions={lineChartOptionsDailyStocks} />
 				</Box>
 			</Flex>

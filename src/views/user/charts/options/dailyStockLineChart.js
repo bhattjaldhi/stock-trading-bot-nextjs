@@ -11,10 +11,10 @@ export const lineChartOptionsDailyStocks = {
         left: 0,
         blur: 10,
         opacity: 0.1,
-        color: "#4318FF",
+        color: "#1976d2",
       },
     },
-    colors: ["#4318FF", "#39B8FF"],
+    colors: ["#1976d2", "#39B8FF"],
     markers: {
       size: 0,
       colors: "white",
