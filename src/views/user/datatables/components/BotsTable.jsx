@@ -46,8 +46,8 @@ export default function BotsTable(props) {
 				</Flex>
 			)
 		}),
-		columnHelper.accessor('amount', {
-			id: 'amount',
+		columnHelper.accessor('inicialBalance', {
+			id: 'inicialBalance',
 			header: () => (
 				<Text
 					justifyContent='space-between'
@@ -63,25 +63,25 @@ export default function BotsTable(props) {
 				</Text>
 			)
 		}),
-		columnHelper.accessor('current_value', {
-			id: 'current_value',
+		columnHelper.accessor('botAssetValue', {
+			id: 'botAssetValue',
 			header: () => (
 				<Text
 					justifyContent='space-between'
 					align='center'
 					fontSize={{ sm: '10px', lg: '12px' }}
 					color='gray.400'>
-					Current value
+					Asset value
 				</Text>
 			),
 			cell: (info) => (
 				<Text color={textColor} fontSize='sm' fontWeight='700'>
-					{info.getValue() || 0}
+					{(info.getValue() || 0).toFixed(2)}
 				</Text>
 			)
 		}),
-		columnHelper.accessor('date', {
-			id: 'date',
+		columnHelper.accessor('endDate', {
+			id: 'endDate',
 			header: () => (
 				<Text
 					justifyContent='space-between'
@@ -93,7 +93,7 @@ export default function BotsTable(props) {
 			),
 			cell: (info) => (
 				<Text color={textColor} fontSize='sm' fontWeight='700'>
-					{moment(info.getValue()?.seconds * 1000).format('DD MMM, yyyy')}
+					{moment(info.getValue()).format('DD MMM, yyyy')}
 				</Text>
 			)
 		}),

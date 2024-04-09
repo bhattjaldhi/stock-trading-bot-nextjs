@@ -3,7 +3,7 @@ import { Calendar, CalendarControls, CalendarDays, CalendarMonth, CalendarMonthN
 import { format, isValid } from "date-fns"
 import React from "react"
 
-export default function CalendarInput({ onDateChange, ...rest }) {
+export default function CalendarInput({ onDateChange }) {
     const [date, setDate] = React.useState()
     const [value, setValue] = React.useState('')
 

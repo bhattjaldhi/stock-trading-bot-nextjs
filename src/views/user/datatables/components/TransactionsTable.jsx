@@ -60,6 +60,40 @@ export default function TransactionsTable(props) {
 				</Text>
 			)
 		}),
+		columnHelper.accessor('shares', {
+			id: 'shares',
+			header: () => (
+				<Text
+					justifyContent='space-between'
+					align='center'
+					fontSize={{ sm: '10px', lg: '12px' }}
+					color='gray.400'>
+					Shares
+				</Text>
+			),
+			cell: (info) => (
+				<Text color={textColor} fontSize='sm' fontWeight='700'>
+					{info.getValue()}
+				</Text>
+			)
+		}),
+		columnHelper.accessor('price', {
+			id: 'total',
+			header: () => (
+				<Text
+					justifyContent='space-between'
+					align='center'
+					fontSize={{ sm: '10px', lg: '12px' }}
+					color='gray.400'>
+					TOtal
+				</Text>
+			),
+			cell: (info) => (
+				<Text color={textColor} fontSize='sm' fontWeight='700'>
+					{(info.row.original.price * info.row.original.shares).toFixed(2)}
+				</Text>
+			)
+		}),
 		columnHelper.accessor('date', {
 			id: 'date',
 			header: () => (

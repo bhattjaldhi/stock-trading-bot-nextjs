@@ -6,7 +6,6 @@ import { collection, deleteDoc, doc, getDocs, query, where } from "firebase/fire
 import { COLLECTIONS, db } from '@/firebase/firebaseConfig';
 import { useAuthContext } from '@/contexts/AuthContext';
 import rest from '@/services/rest';
-import { format } from 'date-fns';
 import moment from 'moment';
 import BotAssetHistoryChart from '@/views/user/charts/BotAssetHistoryChart';
 
@@ -21,7 +20,7 @@ export default function Page() {
       try {
         // Reference to the bots collection
         const botsCollectionRef = collection(db, COLLECTIONS.BOTS);
-
+      
         // Query to fetch data for the specified user ID
         const q = query(botsCollectionRef, where("userId", "==", user.uid));
 
@@ -31,7 +30,6 @@ export default function Page() {
         docSnap.forEach((doc) => {
           data.push({ id: doc.id, ...doc.data() })
         });
-
         setTableData(data)
       } catch (error) {
         console.log(error)
@@ -48,13 +46,11 @@ export default function Page() {
 
   const handleOnRunSimulation = (data) => {
     rest.simulate({
-      agent_path: 'aapl_ddpg_low',
-      agent_type: 'ddpg',
       data_path: 'data/trading_set.csv',
-      trade_limit: data?.trade_limit ? parseInt(data?.trade_limit) : 10, // number of share you can buy per day
-      buy_upper_limit: data?.buy_limit ? parseInt(data?.buy_limit) : 200,
-      sell_upper_limit: data?.sell_limit ? parseInt(data?.sell_limit) : 200,
-      initial_amount: data.amount,
+      trade_limit: data?.shareLimit ? parseInt(data?.shareLimit) : 10, // number of share you can buy per day
+      buy_upper_limit: data?.buyLimit ? parseInt(data?.buyLimit) : 200,
+      sell_upper_limit: data?.sellLimit ? parseInt(data?.sellLimit) : 200,
+      initial_amount: data.inicialBalance,
       symbol: data.symbol,
       start_date: moment('2024-02-28').subtract(2, 'M').format('YYYY-MM-DD'), // Corrected format for moment
       end_date: moment('2024-02-28').format('YYYY-MM-DD'), // Corrected format for moment

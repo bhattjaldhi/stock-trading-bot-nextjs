@@ -7,6 +7,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { COLLECTIONS, db } from '@/firebase/firebaseConfig';
 import { useRouter } from 'next/navigation';
 import { useAuthContext } from '@/contexts/AuthContext';
+import moment from 'moment';
 
 export default function Create() {
 
@@ -21,7 +22,16 @@ export default function Create() {
   } = useForm()
 
   const onSubmit = async (values) => {
-    await addDoc(collection(db, COLLECTIONS.BOTS), { ...values, userId: user.uid });
+    await addDoc(collection(db, COLLECTIONS.BOTS), {
+      ...values,
+      botTotalFees: 0,
+      userId: user.uid,
+      shareLimit: values.shareLimit || 100,
+      buyLimit: values.buyLimit || 100,
+      sellLimit: values.sellLimit || 200,
+      botCurrentBalance: values.inicialBalance,
+      botAssetValue: 0
+    });
     setTimeout(() => {
       replace('/user/bots')
     }, 1000)
@@ -54,61 +64,61 @@ export default function Create() {
               {errors.symbol && errors.symbol.message}
             </FormErrorMessage>
           </FormControl>
-          <FormControl isInvalid={errors.amount} mt={7}>
+          <FormControl isInvalid={errors.inicialBalance} mt={7}>
             <FormLabel>Amount</FormLabel>
             <Input type="number" placeholder={'Enter amount'}
-              {...register('amount', {
+              {...register('inicialBalance', {
                 required: 'Amount is required',
               })} />
             <FormErrorMessage>
-              {errors.amount && errors.amount.message}
+              {errors.inicialBalance && errors.inicialBalance.message}
             </FormErrorMessage>
           </FormControl>
-          <FormControl isInvalid={errors.trade_limit} mt={7}>
+          <FormControl isInvalid={errors.shareLimit} mt={7}>
             <FormLabel display={"flex"} alignItems={'center'}>Trade limit
               <Text color={"gray.500"} fontSize={10} ml={1}>(optional)</Text>
             </FormLabel>
             <Input type="number" placeholder={'Enter trade limit'}
-              {...register('trade_limit')} />
+              {...register('shareLimit')} />
 
             <FormErrorMessage>
-              {errors.trade_limit && errors.trade_limit.message}
+              {errors.shareLimit && errors.shareLimit.message}
             </FormErrorMessage>
           </FormControl>
-          <FormControl isInvalid={errors.buy_limit} mt={7}>
+          <FormControl isInvalid={errors.buyLimit} mt={7}>
             <FormLabel display={"flex"} alignItems={'center'}>Buy upper limit
               <Text color={"gray.500"} fontSize={10} ml={1}>(optional)</Text>
             </FormLabel>
             <Input type="number" placeholder={'Enter buy upper limit'}
-              {...register('buy_limit', {
+              {...register('buyLimit', {
                 validate: value => validateLimits(value)
               })} />
             <FormErrorMessage>
-              {errors.buy_limit && errors.buy_limit.message}
+              {errors.buyLimit && errors.buyLimit.message}
             </FormErrorMessage>
           </FormControl>
-          <FormControl isInvalid={errors.sell_limit} mt={7}>
+          <FormControl isInvalid={errors.sellLimit} mt={7}>
             <FormLabel display={"flex"} alignItems={'center'}>Sell upper limit
               <Text color={"gray.500"} fontSize={10} ml={1}>(optional)</Text>
             </FormLabel>
-            <Input type="sell_limit" placeholder={'Enter sell upper limit'}
-              {...register('sell_limit', {
+            <Input type="sellLimit" placeholder={'Enter sell upper limit'}
+              {...register('sellLimit', {
                 validate: value => validateLimits(value)
               })} />
             <FormErrorMessage>
-              {errors.sell_limit && errors.sell_limit.message}
+              {errors.sellLimit && errors.sellLimit.message}
             </FormErrorMessage>
           </FormControl>
-          <FormControl isInvalid={errors.date} mt={7}>
+          <FormControl isInvalid={errors.endDate} mt={7}>
             <FormLabel>Expires on</FormLabel>
             <CalendarInput
-              {...register('date', {
+              {...register('endDate', {
                 required: 'Date is required',
               })}
-              onDateChange={(value) => setValue('date', value)}
+              onDateChange={(value) => setValue('endDate', moment(value).format('YYYY-MM-DD'))}
             />
             <FormErrorMessage>
-              {errors.date && errors.date.message}
+              {errors.endDate && errors.endDate.message}
             </FormErrorMessage>
           </FormControl>
 
