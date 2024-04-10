@@ -14,7 +14,7 @@ const Home = () => {
         alignItems="center"
         minHeight="100vh"
       >
-        <Box mt={[100, 150, 200]} mx="auto" width={["90%", "90%", "900px"]} position="relative" px={[4, 8, 12]}>
+        <Box mt={[100, 150, 150, 200]} mx="auto" width={"90%"} position="relative" px={[4, 8, 12]}>
           <Box textAlign="center">
             <Heading as="h2" size={{ base: 'xl', md: '2xl', lg: "3xl" }} mb={4}>
               Build Wealth Automatically With AirBot
@@ -35,18 +35,18 @@ const Home = () => {
             Get Started
           </Button>
         </Link>
-        <Box position="relative" width="100%" height={['200px', '400px', '900px']} mt={8} px={[4, 8, 12]}>
+        <Box position="relative" width="100%" height={['200px', '400px', '200px', '900px']} mt={8} px={[4, 8, 12]}>
           <Image src="/assets/images/home_banner.png" layout="responsive" objectFit="cover" width={1500} height={500} alt="banner" />
         </Box>
-        <Box position="relative" width="80%" height={['70px', '200px', '200px']} mt={8} display="flex" justifyContent="center" px={[4, 8, 12]}>
+        <Box position="relative" width="80%" height={['70px', '100px', '100px', '200px']} mt={8} display="flex" justifyContent="center" px={[4, 8, 12]}>
           <Image src="/assets/images/home_counter.png" layout="responsive" objectFit="cover" width={500} height={500} style={{ maxWidth: '1100px' }} alt="counter" />
         </Box>
-        <Box position="relative" width="100%" mt={150} px={['30px', '50px', '200px']} >
+        <Box position="relative" width="100%" mt={150} px={['30px', '30px', '30px', '200px']} >
           <Heading as="h2" size="xl" textAlign="center">
             Invest & Grow your Stock Portfolio
           </Heading>
           <Grid
-            templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']}
+            templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)', 'repeat(1, 1fr)', 'repeat(3, 1fr)']}
             gap={8}
             mt={8}
             px={[4, 8, 12]}
@@ -57,7 +57,7 @@ const Home = () => {
                 background="#F3F3F3"
                 display={"flex"}
                 flexDirection={"column"}
-                padding={['50px', '100px', '50px']}
+                padding={['30px', '30px', '30px','50px']}
                 borderRadius={20}
               >
                 <Heading as="h5" size={"md"}>
@@ -128,12 +128,12 @@ const Home = () => {
 
         </Box>
 
-        <Box position="relative" width="100%" mt={150} px={['30px', '50px', '200px']} py={10}>
+        <Box position="relative" width="100%" mt={150} px={['30px', '50px', '50px', '200px']} py={10}>
           <Heading as="h2" size="xl" textAlign="center">
             Fully featured to buy, trade and invest in AirBot
           </Heading>
           <Grid
-            templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']}
+            templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(3, 1fr)']}
             gap={8}
             mt={8}
           >
