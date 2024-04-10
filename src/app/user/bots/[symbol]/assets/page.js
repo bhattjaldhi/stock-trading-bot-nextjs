@@ -5,11 +5,15 @@ import React, { useEffect, useState } from 'react';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { COLLECTIONS, db } from '@/firebase/firebaseConfig';
 import { useAuthContext } from '@/contexts/AuthContext';
+import BotAssetHistoryChart from '@/views/user/charts/BotAssetHistoryChart';
+import moment from 'moment';
 
 export default function Page({ params }) {
 
   const [tableData, setTableData] = useState()
+  const [lines, setLines] = useState([])
   const { user } = useAuthContext()
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,18 +24,32 @@ export default function Page({ params }) {
         // Query to fetch data for the specified user ID
         let q = query(assetsCollectionRef, where("userId", "==", user.uid));
 
-         // Add symbol filter if provided
-         if (params.symbol) {
+        // Add symbol filter if provided
+        if (params.symbol) {
           q = query(q, where("symbol", "==", params.symbol));
         }
 
         const docSnap = await getDocs(q);
 
         const data = []
+        const barset = [{ name: 'Info', data: [] }];
+
         docSnap.forEach((doc) => {
-          data.push({ id: doc.id, ...doc.data() })
+          const _data = { ...doc.data() }
+          if (_data[`shares`]) {
+            data.push({ id: doc.id, ..._data })
+            barset[0].data.push({ x: moment(_data.date), y: _data[`price`] * _data[`shares`] });
+          }
         });
 
+        setLines(barset)
+
+        // Sort the data array by date
+        data.sort((a, b) => {
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          return dateB - dateA;
+        });
         setTableData(data)
       } catch (error) {
         console.log(error)
@@ -49,6 +67,7 @@ export default function Page({ params }) {
         spacing={{ base: '20px', xl: '20px' }}
       >
         {tableData && <TransactionsTable tableData={tableData} />}
+        <BotAssetHistoryChart data={lines} />
       </SimpleGrid>
     </Box>
   );
