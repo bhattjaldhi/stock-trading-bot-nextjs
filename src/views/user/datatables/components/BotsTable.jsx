@@ -118,7 +118,7 @@ export default function BotsTable(props) {
 						variant='outline'
 					/>
 					<MenuList>
-						<MenuItem><Link href={`/user/bots/${info.row.original.symbol}/assets`}>View Assets</Link></MenuItem>
+						<MenuItem><Link href={`/user/bots/${info.row.original.id}/assets`}>View Assets</Link></MenuItem>
 						<MenuItem onClick={() => onRunSimulation(info.row.original)}>Run Simulation</MenuItem>
 						<MenuItem onClick={() => {
 							info.table.options.meta.removeRow(info.row.index);

@@ -26,7 +26,7 @@ export default function Page({ params }) {
 
         // Add symbol filter if provided
         if (params.symbol) {
-          q = query(q, where("symbol", "==", params.symbol));
+          q = query(q, where("botId", "==", params.symbol));
         }
 
         const docSnap = await getDocs(q);
