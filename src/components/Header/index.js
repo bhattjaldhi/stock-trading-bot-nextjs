@@ -35,11 +35,9 @@ const Header = () => {
           {/* Display the navigation links on larger screens */}
           <Flex display={{ base: "none", md: "flex" }} align="center">
             <Link mr={4}>Home</Link>
-            <Link mr={4}>About</Link>
+            <Link href="https://jaldhihimanshubha.wixsite.com/brain/about" target="_blank" mr={4}>About</Link>
             <NextLink href="/pricing" style={{ marginRight: 15 }}>Pricing</NextLink>
-            <Link mr={4}>Contact</Link>
-            <Link mr={4}>Privacy</Link>
-            <Link mr={4}>Terms</Link>
+            <Link href="https://jaldhihimanshubha.wixsite.com/brain" target="_blank" mr={4}>Contact</Link>
             {!user ? <NextLink href="/login">
               <Button
                 colorScheme="brand"

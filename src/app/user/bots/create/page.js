@@ -7,7 +7,11 @@ import { collection, addDoc } from "firebase/firestore";
 import { COLLECTIONS, db } from '@/firebase/firebaseConfig';
 import { useRouter } from 'next/navigation';
 import { useAuthContext } from '@/contexts/AuthContext';
+import { Select } from '@chakra-ui/react'
 import moment from 'moment';
+
+const symbolArray =  ['DOW30', 'AAPL', 'AMGN', 'AXP', 'BA', 'CAT', 'CRM', 'CSCO', 'CVX', 'DIS','GS', 'HD', 'HON', 'IBM', 'INTC', 'JNJ', 'JPM', 'KO', 'MCD', 'MMM',
+'MRK', 'MSFT', 'NKE', 'PG', 'TRV', 'UNH', 'V', 'VZ', 'WBA', 'WMT']
 
 export default function Create() {
 
@@ -56,10 +60,12 @@ export default function Create() {
         <Box mt={5}>
           <FormControl isInvalid={errors.symbol}>
             <FormLabel>Symbol</FormLabel>
-            <Input type="text" placeholder={'Enter stock symbol'}
-              {...register('symbol', {
-                required: 'Symbol is required',
-              })} />
+            <Select placeholder='Select stock symbol' {...register('symbol', {
+              required: 'Symbol is required',
+            })} >
+              {symbolArray.map(x => (<option value={x}>{x}</option>))}
+              
+            </Select>
             <FormErrorMessage>
               {errors.symbol && errors.symbol.message}
             </FormErrorMessage>
