@@ -46,11 +46,11 @@ export default function Page() {
         });
 
         const botAssetValue = data.reduce((accumulator, currentValue) => {
-          return accumulator + (currentValue.botAssetValue || 0); // Assuming botAssetValue is a numeric value
+          return accumulator + (parseFloat(currentValue.botAssetValue) || 0); // Assuming botAssetValue is a numeric value
         }, 0);
 
         const investedAmount = data.reduce((accumulator, currentValue) => {
-          return accumulator + (currentValue.inicialBalance || 0); // Assuming botAssetValue is a numeric value
+          return accumulator + (parseFloat(currentValue.inicialBalance) || 0); // Assuming botAssetValue is a numeric value
         }, 0);
 
 
