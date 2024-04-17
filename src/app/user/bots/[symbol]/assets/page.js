@@ -5,13 +5,10 @@ import React, { useEffect, useState } from 'react';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { COLLECTIONS, db } from '@/firebase/firebaseConfig';
 import { useAuthContext } from '@/contexts/AuthContext';
-import BotAssetHistoryChart from '@/views/user/charts/BotAssetHistoryChart';
-import moment from 'moment';
 
 export default function Page({ params }) {
 
   const [tableData, setTableData] = useState()
-  const [lines, setLines] = useState([])
   const { user } = useAuthContext()
 
 
@@ -32,17 +29,14 @@ export default function Page({ params }) {
         const docSnap = await getDocs(q);
 
         const data = []
-        const barset = [{ name: 'Info', data: [] }];
 
         docSnap.forEach((doc) => {
           const _data = { ...doc.data() }
           if (_data[`shares`]) {
             data.push({ id: doc.id, ..._data })
-            barset[0].data.push({ x: moment(_data.date), y: _data[`price`] * _data[`shares`] });
           }
         });
 
-        setLines(barset)
 
         // Sort the data array by date
         data.sort((a, b) => {
@@ -67,7 +61,6 @@ export default function Page({ params }) {
         spacing={{ base: '20px', xl: '20px' }}
       >
         {tableData && <TransactionsTable tableData={tableData} />}
-        <BotAssetHistoryChart data={lines} />
       </SimpleGrid>
     </Box>
   );
